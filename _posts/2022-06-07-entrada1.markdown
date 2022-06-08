@@ -1,7 +1,0 @@
----
-layout: post
-title:  "Entrada de blog"
-date:   1969-06-20 19:02:37 -0300
----
-
-Post normal. 
