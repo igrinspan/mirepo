@@ -42,7 +42,7 @@ Hay un porcentaje del time frame que no es para las tareas, sino para el context
 
 Video 1: todo el proceso explicado.
 
-![Teo%209%20-%20Orga%202%2078a06642f6da480b972a23c3428a0f79/Untitled.png](../teos/teo9/Teo%209%20-%20Orga%202%2078a06642f6da480b972a23c3428a0f79/Untitled.png)
+![teo9-1][1]
 
 ## Modelos de Programación
 
@@ -104,7 +104,7 @@ Vamos a tomas un approach bottom-up. Primero nos vamos a ocupar del Context Swit
 
 Es una estructura que vamos a usar como espacio de contexto de cada tarea. Está linkeado a una tarea, pero esa tarea no puede ver qué hay adentro.
 
-![Teo%209%20-%20Orga%202%2078a06642f6da480b972a23c3428a0f79/Untitled%201.png](../teos/teo9/Teo%209%20-%20Orga%202%2078a06642f6da480b972a23c3428a0f79/Untitled%201.png)
+![teo9-2][2]
 
 <aside>
 ⚠️ Guardamos el CR3. Eso es porque cada tarea tiene su CR3. 
@@ -122,7 +122,8 @@ En Modo Protegido, una tarea de tipo user (menor privilegio) no puede ejecutar i
 
 Tiene un descriptor porque es un segmento. Es un descriptor de sistema.
 
-![Teo%209%20-%20Orga%202%2078a06642f6da480b972a23c3428a0f79/Untitled%202.png](../teos/teo9/Teo%209%20-%20Orga%202%2078a06642f6da480b972a23c3428a0f79/Untitled%202.png)
+![teo9-3][3]
+
 
 - El bit **B (busy)** sirve para indicar que la tarea está siendo ejecutada.
 
@@ -197,3 +198,10 @@ En el handler de esa excepción, se hace el switch de la siguiente manera:
 La interrupción se genera **justo cuando los vas a usar.** También se guarda, no sé dónde, 
 
 Quedan los últimos 2 videos.
+
+
+[1]: https://lh3.googleusercontent.com/xmLFoRlruqaZrj6Y123BnOJEhwYWQjcA1PAP-kUKPUuBQvlZ2Tym41fYDhOTwffD0npluN_1Sxm9LVKju-X7XlIj1V_Ar-m73ihcB0Dy1zI_EjT9WMtAv4aTzGkU0kmGzDdeDoM9wcS5mSAI_xvvL3U5WMGiB5zNJHab55zEQ3kAEHQZ8qxTL4ujieFT_Sg3Gi6hRvXDr8R54Qc0eNItpO5mOyUTNr3WWY2NK1obMgDrDIglZ9VmVz0B_DOkfz1L51K2EdH-RovO9q56XnVx4p64p-j_WdoaERUPqdX_l1PtTLSIEkov4HY-CG6uTzJU4gw3z3mUyYvrJsQtg2mt9b2YBbmrXVfEqleFb8iErmjr7zjbDNgpCoxn46hRY4cUhJeZtVjg-dPGJasZno7kn8TvXXX_690N2CJ47NwQiPb6kGIqnAr1o4ArlmxYw2M2gGgtjC73zcjXfrePoaBCOMSe3iICyn4Llrrc1OCXdBteTuJ6d1VuzH0GU4z8EUmPfByU3u9mCuko0Lp_UXvhHQeiJEY-UEElFSq6jmjZVQ-u9nIfNVuKufq-tflBOL7-OppqqMqJevvhH8O4_euTSMoWbqa7PeQoX__1pTBjBb1mwgXK7iqAAjO1ov3l3alHn445clzASuQHN0LbdVfuV0Hrc4Sbe6IVp5N_5Tr_fgDWBQuq01fBiX4DyXC5lEiVUiBY4s_cWM7WLYc6I6JkWDCNXpEM8fLhwy81_X6dipYd66l-mlYJ7KiK3GHTgMPl_RRimFkuQP6qbPtO-HPkjfMyj52Y3usYl6C6iYmXdB08LNUV_LKCXFqFmYJkOtWiG5Evv3-m7kST037WqrhpJWLKUDZ2Xqbo5JEeFEUX7w=w1098-h198-no?authuser=3
+
+[2]: https://lh3.googleusercontent.com/d_ZsmRAgBGSMYn2MLXJUPgqXnFbK_tak5h538d8w3ehWDQKOiahS2vBcTkiQzU3lRldfp0dPhFDUzhKPX6biUfMiG3W0RBvbzDkRM6hZ5I-oCTUJMalT4LKrny4C7dMIdcIxKuLZpROZyLNzfTxB5rJRQxzlC16Pok7DTah1yXkhgmCtLWHG5Iaor0L2gdArkbD87Hb9B0dSgvpAcTYmnUEF4iVsuLESS77NQL7PG9HRPUW9E7fs0rtZTVg-fBFGWt6N1LPSp7zrYbL-GMG5sylgq_kxltn3i_CRhajmuwq7jo30JB43v8zIv4QQ6iJ1Skz_xeb_9azhP-Zd-BLe6UvVXJCGCXMjyWWq4vS76m9UYlN2c21Di6HhvNQAYhOrQDSX5g7lbcfToxih_ZBwn9FoAtVifNA7ZXyifQ2Fae4PqtY4ydMBddsCqNiiNyQuxXnbe_PzWzPOg8NB6tnvGLjq6MG2BtiFNjINMzqLtVIfLvZUhdcu0Gg7Tb7SmQMU-FA1kkvV0VdwvLYN0ZPrQ4dARMLAhMPzxJteDbb1eVRse1RLfv2SusARvcXhvjZQFmQ3n25TET4DIM6-rmjxB6kSSjDwZiIqN5EC5rsNpDVraVncOSGcgJjBYXBOa6zd7i4Hi_fwGAftbUDwNunsWsRmYIpGWBb3BeKX9ReBJ4nTbxtetHZdffPDmSjFj8gPIhcYZK7RaCzeH-cHQax_hFds7q9vohM_hyRpV9uiyXOvfV6gG_SoKolcQiy9I3hgTm_6mNovYC_GNALzncGGROlumqrgkE_n0IwcGP789uKxpe1gCWXqJbvXh9HIFinBD1NbFuxYwKWAGLtPOP8IfYtVunTu8_oPjG9Vj4OCfQ=w1110-h702-no?authuser=3
+
+[3]: https://lh3.googleusercontent.com/iTfEYIfwQ7WZFA4gXhMlCCfs3bLPLnChYzZfvonJgnK1X8H6SMxPGNweF9aeYZRmO07Ck0pbXZZI4t3ms8wpx8QURQvM7d4kCez6ILnFROfUOX1Re5sosvxvdp01OtLJRNwo_Ne9gndqsnA9QFUR2aLvXlC_zp0jSf4YJy4zz-nJ4uGa1QDkaD8GIk_FOK841TBLJtq8F4R9_WFFCKbDpjsc1NTA2t2xDzromJnmaTM6Yl4Hjfl8tgkssjk2RztJTkMBKzLdeCWg5_lxwZSWilPMGJgXPbF8lv5K3IogAOoOkRPBAVvi6iwSBYGe6Hr19odE4eDYEbWiDj6nzDj6jM_F4j8X6tQ3jKF2SxjvZ3xJ4GdsOHWaiRUBCZiDYzRCOPrCUbEVhYK3Ai1vYU9R8WPQfMO664Und-arD4VfMJTVfO5WVw2uEmG5jyO9uGA1ldJMpUtqDOWHb_wQ_ymxuSTyyAANWAWCGf2918dlWEWh25RGqB1_zBiHtV9BPVsQOoM5vygFH10GnbAahFoftdoRcQqvpVtYRGRwMQZ5LQGm7WSUxWC8oBtakN3yBvH4zAh3nyYHSD93S6s9UVcw11K4z4LF3kZ2nWBoy0lsmNCwYsqUmAQc7FbbCfyCE9mZeEx0D8VMRTtlGi6AJspT8pZgyLW-atob16O0CtXZOBYv2c-_xHz27kfsmBkB8xbGCWqE6mUuPJpnlyiHv7M780YYJ5RKHv2JEu00osn6iOpPUqSb5y70yW5FGYhbapNCKA2pozio1eurS9PYBRE-8CkxvVTgG-cdMcqUlzDKSYv4sINkM31TOXboctOpldmzbihAZEMNPKjqlacaE3BWat9-f3SfwyFe4TlzEVGZ0A=w1126-h646-no?authuser=3

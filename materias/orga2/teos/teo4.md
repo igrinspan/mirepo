@@ -95,7 +95,7 @@ Se espera un **hit rate** (#hits/#accesos totales) lo más alto posible. Hit es 
 
 ### **Operación de acceso a memoria para lectura**
 
-![Untitled](../teos/teo4/Teo%204%20Orga%202%20(03%2000hs)%2022a12dfca0244e809e000f9560848ce0/Untitled.png)
+![teo4-1][1]
 
 ## Organización del caché
 
@@ -173,3 +173,5 @@ El procesador escribio una variable, y la fue a escribir también a la RAM. Ento
 El snoop bus espía las direcciones y qué van a hacer con esas direcciones. (Address y Control). Eso lo saca del bus de sistema y lo lleva al controlador de cache. 
 
 Entonces, cuando el snoop bus se da cuenta de que otro procesador está actualizando esa variable, le avisa al controlador y este se fija si tiene a esta variable en su cache. Si la tiene, la marca como inválida. Esto asegura la coherencia, pero hay mejores métodos para hacer esto más eficientemente.
+
+[1]: https://lh3.googleusercontent.com/gfncX7Wfj2lLnk0h--BQub0cAOLtKY2CmUYeFYFVpq6IvA6_5D255IfbErJ1bRo4dzU39BQjlM9HnWd9i54yQIJQi92eY_VoesmA7_KesoJphMSnoczpfiuIpt1sUTl_8H_3y7QV4g_q4zK1b0EnHGKffIOSyPLI2Bhj5Kj57Dx7pe8-yWT1mTy-6ijEyI-7hlbb067wFZG2mYMy6i0YZKb8a6K2zDm6WoBfAZueKy0jq4rvamAcuDAPd4_CAdo6pshXmhyVxDlX1KR_XAVQ7MpFLRhmNFcz5N1rUY3Tx3rz0nAXMYupy3_-mE0ABfrWmGJTAw-HFZRf7kIf3JL6DnEDCpstsvm4_Lzhts1gt9go-Z2sc_yVXJvUCPFOoXFpX0AT9IJFWFXCNnW9qPDpkWdsxEf4jpfNnnUSb-B_Klo9CM84sb9Y3pXUGyNOTUZQmiKMn_h11aNkqpCifzj3Hfy6cVa05zC9OOJdlh87XaTNsgo3hsvDTUczAZPnxAmn82F_Ea6s8cCG3H_OKgEcNo3HJzy_6HTCZOzGhlzRibha4b-1Xjmt3Convd-hgZZbOQm-SStGtMhoepVoiiu3VcVIKFI4hXwnUGd5cacBjobkYx8-966wwtoiGrUKjdsV0n_ChWhrdUBenUgAsY4Ijk0MiT5Dkl0XvkEvXcKs5MUKj1EkIjHtc2cv5pSqfNeG09capvyrlID7JcA8aiCphDNXPhFlcHtu0YuxTeCvVmQc4HAlEkqeDoHehTFxAdbWhuMFdSTT3_xflYN20RRhFClz_1rgLKe4VCn9PvAf_PKK5HV_EH7JXqKdqc1YbtdsyD6gdLgrBK94qo5CvfYkjforxUSPd_53EWIUY-SgUg=w936-h696-no?authuser=3

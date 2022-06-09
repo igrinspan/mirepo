@@ -35,7 +35,7 @@ Los sistemas operativos, tradicionalmente, diseñaron su sistema de memoria virt
 
 **Segmentación**
 
-![Teo%208%20-%20Orga%202%20ca981e6b5d0e460a82f72c54a732a757/Untitled.png](../teos/teo8/Teo%208%20-%20Orga%202%20ca981e6b5d0e460a82f72c54a732a757/Untitled.png)
+![teo8-1][1]
 
 Un segmento es un espacio lineal de direcciones, entonces usa **dirección lineal**. De no mediar otra etapa, este número sale por el bus de address convertido en **dirección física**. O sea dirección lineal = dirección física.
 
@@ -44,7 +44,7 @@ En la Unidad de Paginación se debe habilitar seteando el bit **CR0.PG.**
 
 **Paginación**
 
-![Teo%208%20-%20Orga%202%20ca981e6b5d0e460a82f72c54a732a757/Untitled%201.png](../teos/teo8/Teo%208%20-%20Orga%202%20ca981e6b5d0e460a82f72c54a732a757/Untitled%201.png)
+![teo8-2][2]
 
 Ahora, con paginación, la dirección lineal pasa por la Unidad de Paginación y ahí se converte en la dirección física. La dirección física no tiene por qué ser igual a la dirección lineal. Si queremos que valgan lo mismo, podemos hacer un mapeo conocido como **Identity Mapping.** 
 
@@ -95,7 +95,7 @@ Vamos a tener 1024 tablas de descriptores de páginas, cada una con 1024 descrip
 
 Cada tabla ocupa una página. (1024*32 bits = 4Kb)
 
-![Teo%208%20-%20Orga%202%20ca981e6b5d0e460a82f72c54a732a757/Untitled%202.png](../teos/teo8/Teo%208%20-%20Orga%202%20ca981e6b5d0e460a82f72c54a732a757/Untitled%202.png)
+![teo8-3][3]
 
 No necesitamos tener TODAS las tablas a la vez en la RAM, por cada tarea vamos a ir a buscarlas, por eso no terminamos ocupando 4Mb de una.
 
@@ -124,7 +124,7 @@ El procesador, una vez que recibe la dirección lineal, la divide en 3 campos de
 
 ### Traducción de dirección lógica
 
-![Teo%208%20-%20Orga%202%20ca981e6b5d0e460a82f72c54a732a757/Untitled%203.png](../teos/teo8/Teo%208%20-%20Orga%202%20ca981e6b5d0e460a82f72c54a732a757/Untitled%203.png)
+![teo8-4][4]
 
 De la unidad de segmentación, nos llega una dirección lineal.
 
@@ -142,7 +142,7 @@ Las entradas en el DPT se llaman **Page Directory Entry,** y las entradas en cad
 
 ### Traslation Lookaside Buffer (TLB)
 
-![Teo%208%20-%20Orga%202%20ca981e6b5d0e460a82f72c54a732a757/Untitled%204.png](../teos/teo8/Teo%208%20-%20Orga%202%20ca981e6b5d0e460a82f72c54a732a757/Untitled%204.png)
+![teo8-5][5]
 
 La primera vez que vayamos a una página hay que hacer toda la bola y conseguirse la dirección. Una vez que hacemos eso, nos guardamos en el TLB el índice del DPT y el índice de la PT. 
 
@@ -177,7 +177,7 @@ PAE es el que se impuso (💪).
 
 **CR3: Descriptor de la Página que contiene al DPT.**
 
-![Teo%208%20-%20Orga%202%20ca981e6b5d0e460a82f72c54a732a757/Untitled%205.png](../teos/teo8/Teo%208%20-%20Orga%202%20ca981e6b5d0e460a82f72c54a732a757/Untitled%205.png)
+![teo8-6][6]
 
 Bit 4: **Page caché disable**. Para deshabilitar el caching de la página.
 
@@ -185,7 +185,7 @@ Bit 3: **Page write through.** Te administra cómo manejar la coherencia, cuando
 
 **Descriptor de una Tabla de Páginas.**
 
-![Teo%208%20-%20Orga%202%20ca981e6b5d0e460a82f72c54a732a757/Untitled%206.png](../teos/teo8/Teo%208%20-%20Orga%202%20ca981e6b5d0e460a82f72c54a732a757/Untitled%206.png)
+![teo8-7][7]
 
 - Bit 7 - PS (Page Size): si usamos páginas de 4Kb o de 4Mb. En nuestro caso, como PSE-36 va a estar desactivada, debería ser siempre 0.
 - Bit 6 - IGN (ignore): siempre en 0.
@@ -197,7 +197,7 @@ Bit 3: **Page write through.** Te administra cómo manejar la coherencia, cuando
 
 **Descriptor de una Página.**
 
-![Teo%208%20-%20Orga%202%20ca981e6b5d0e460a82f72c54a732a757/Untitled%207.png](../teos/teo8/Teo%208%20-%20Orga%202%20ca981e6b5d0e460a82f72c54a732a757/Untitled%207.png)
+![teo8-8][8]
 
 Dirty: una página está sucia / fue modificada. Cuando hay que desalojar la página le vemos el D y si está en 0 no tiene sentido guardarla en la memoria virtual, simplemente la pisamos. Pero si está en 1, significa que alguien la modificó, entonces necesitamos guardarla antes de pisarla.
 
@@ -214,16 +214,37 @@ O sea, las páginas globales no se ven afectadas por cambios en CR3 pero sí les
 
 PAE se activa en **CR4**
 
-![Teo%208%20-%20Orga%202%20ca981e6b5d0e460a82f72c54a732a757/Untitled%208.png](../teos/teo8/Teo%208%20-%20Orga%202%20ca981e6b5d0e460a82f72c54a732a757/Untitled%208.png)
+![teo8-9][9]
 
 El bit 5 - PAE hay que ponerlo en 1 y el bit 4 - PSE en 0.
 
 Una vez activado, PAE permite traducir una dirección lineal de 32 bits a una dirección física de hasta 52 bits.
 
-![Teo%208%20-%20Orga%202%20ca981e6b5d0e460a82f72c54a732a757/Untitled%209.png](../teos/teo8/Teo%208%20-%20Orga%202%20ca981e6b5d0e460a82f72c54a732a757/Untitled%209.png)
+![teo8-10][10]
 
 En PAE se arma una estructura jerárquica de 3 niveles. Hay más de un directorio de tablas de página.
 
 ---
 
 **Quedan 3 videos (01:15hs)**
+
+
+[1]: https://lh3.googleusercontent.com/KjOLS_NozOVnqe0GCu0Lp0r0gcrFmLLeT-eX2wUHJ-CHIHX6IVh5jy3jcfrO5Jd6PDGXQzVqD3aZME3bbUs7p4u6AbaAKxyLJfEFnvSeqbtkslZj1RCkvTjZbBaeW6_eQ10VW_Bas9TExKnZv8Q_UIlLDexF16ny3odnxpHUkClpVyX9dpx2jCmj36BqtyNZYhZ518pgafGDz0O2xN_KM5Ff_cy1Ubmj83hYZnvnXFtnxcDajmFkmhBa7SdFreO1mroqHfQf7ZEqG00V-nu4JEnHvjYfJiG2mYMYRgqAJwGRZffoIMrocEHF0EXfOIxObiZF2oKayf06Ho1zVcTtoH9m8bY1qA8cMfG4dM8cH52GR23C1gOlSiUY5dQQsyxfQNCOx6Fzq4rv8VhC-652mtU3WZs1aL10lD9c0Q7hCLgIO2z3DeoX29ouwYP9Yj9VWgO639xyb2cmGxC_vL-LtNW2GcQQl7E81OLNzzPD-BQ3shxz9Dz5Jrpa1tI9WAUmA7QUb24z40RBeiuMCVuFIUmCz7BPBgXodXOq7dT-od6uuQXsU0KDPv9hn4kSWgCqZ03DdgQN_S6gWE2XvT2Rylbfr_pAgr8a7izyH2bg0ptxbUIhrhLh7Jzd2zK2MhxuwckKum0NIDPrPrFpEGkuSFfeSrWq4eRF7qhALkwMTHZg3zekQsZG6dM08HjGBVCYSirw2D0GY2nrD_BQgZlhiUnvzZ37SE8dP2N15f93zodoafpIw87mx-XeZpvPi2jvIohSpI9LI2Ti1wsTOZxs4GfO-CcAjIsNiYoe9FRGZzPa8TQLrOt58QqA3Q6WG82C7cO8JUIVRvgm8-EDesRajYXkTiqKJs-0chEgxEIAyQ=w982-h438-no?authuser=3
+
+[2]: https://lh3.googleusercontent.com/p4qk870Sawig5FjVZnwy1u7I4PuOUjWNajn48TRnuupEUPyx-zUKrVC7WDZpEl0EVzHjmx2g3HEYkCdfpNxSXTS7sq0k79ZnLnDAOPCokEf75T8dbi1Y-XuxbQmFyXKq8vEyBqC93Cjrvdb9nivLE3u0okUF4EKAQPOmuLO9CSr3gSFdj5i0HX_4I6bV0_718nEA3hVqYsg7r_uOd70mDt1BD1p3QSIsSfb9iplLL5g5G0mcRIJg8nuHEFdLjlMPkAU-G68J1DtlKm65Uc474zggKgpGiZec7RpIYWo8v8yJdC5CBWdH64GqiG67Lljv0PAgyWxdCzOLfALFS_mP4BQPFNWZlMHzcowb3ix2WOq3L8hi_MJ_CvuAwxXLF9AgyRaTcKXg9lzLgZbZUc9ejauICKAOTh6VYUf_JSKtds6BPlKedHJerftOi4BNbiHZe9gHowDpZ8R4splmI1KMX46SzFkLBfjHMkyTWyPuD-k_j7uG0UgxN1lmOhihJD2YHP12nN0K3_8qFn-066UxbFxslmIfKCRxC6qrf1O6wPeR9bNGF-XSYLPeu8mIrblnAMVcRyjTEee06C3FEGc0DTC61YD-ucdgXTvPpMw8fXxnVfkKjvHqi-DbP3DWQqnDfQrXLluSsxPGfRwYV6fnRcZv3njFLLzCZlfODi6Do43w5ul52XKmsrR_6ivxqaqdIXbQlBxbnb1OOv8AKsRZ5g5nP8nVJhqV9K6U8sYgTqg-_PB7vmPXAtoS74OXAW8Vp6kPQTX_rybSw5UFfptu-Ng9CBKONb0xV0CIMPksyGCXNmedqVm-wM_s66uOxGmeXp_5MUkEDetGyP9pfC7lqEs0DfBwF611s4rXmlNx6w=w898-h654-no?authuser=3
+
+[3]: https://lh3.googleusercontent.com/5drsmIYiGqPhnfKnBWJ1aBnAnyS1XOd4oKbUw8wgQHhNOrTe1ngXCSq-z1V3IJ7_J1gHKyJeAec5thcnODoi_Qa1lWAWySv_gc4ek0-GtLABZMJqaMhuGfLOIvf3TC382e4qtDWEEtFbDTmI4Go0Hxa4PAUrX_FJ1UzzjfwKjBpgKJfa9Ax5CjdSCHp4JG9xXEa_tE7-qv9SwxlsgHrRu4ilORD9Q002pvskZKqnuXSWEoxUIlJAdxJ7qWGIrZQgvRlYeaTrNunX9YJmIxMma0dE34W368ddXpplCcgfXvFZBwoEQTzL6s0BRNkDYxW56RXhlhhRObvnR0r-gSgbqZy2UL2xTAxuKrTowY9XMRk0dq1RUipojLi-WJb5PSI0fx4VKxCCAtOjp1ZozTII9fwK7uR_Sy8T-_UTnBjrzar-e7w-7JK-herw6xOajViVn6sgQ8ybiuHggRFo29tQbI5sZr7LS9ltk53riuuNxigucYIWKgsWZpD7H2M0-6ucEu7uzFhrgADjm4r8ciaEzZn6fw2B3ZQWDQeuHApcYDl8aLphuQQdOh0Y1S4vRt4OZpEGVxKMI_YAnqjPd0d739aWrB0SDWJSUIq2hsVEbg5r4kSSJ-CqNNB61Wv1Hz8_CykvgPSzlki48IHBU4_ZzKLA5BjTa6QG75vOlU8Eo6GcEBtD4vkG6hru_M4l2VyLwLv5DkzeSktM9Zp-MApdmppQRsCh9A1xh_zevUuMuqSllmEVCJtK1z01MBx5fhGXYiJ_u1_QYr5M8_9ImDyTtySeE_5r37h9802oONsuqKvhxErED96y-pWFVlfOOSBSgZNohLrQFCLRb9MBgYNQpZ_YB3mXPiCbbOlueBYKkA=w1122-h714-no?authuser=3
+
+[4]: https://lh3.googleusercontent.com/6MSyoruylk2Vf_3oEH_y7KWJfwr4yVwIaRD7A1cM_PsAYvGT_J5aJtjUABRW73voqKtHiQHHvwrhWRsddnVFslrGCtaXM1oshdqr1MRZ43hqlpI1vkA9VVNIpCKFtprOGU0x8NS5E4OMyqY703W8789oTK3DJiDiN0tp1nRWo17sB3AHEOvAMv0gqTRLzCbA9Fc8NnYovasUcTJ7hsnMzrvJTtGPdVQ-pizLK9V43JWG3Msfom0Xvz9aCZbgIHS0sl0Yc8jX9t8394H3cWlqZ4Gze4r-ZakWfc5um9Y84deeHEpH8FqXkz74JbtkD73AgNljGhZ_JJt1Jjamhq4HQ21G-MZ8-e9b3CBb6cL7bw7D2_s1cnmJyLcmx7IJZHGE-MzlEZNNTTBh5fpN58SNFu4mMjpK1NmH4H2y46YBxbIgiu3k2cNXaOqACoUos-TEhku8dwBjSU_TDBOdkEqyUAB8EZeGkNEiNA0A433NZtzDbrcJyRaS2XInWTtwMR5Tn10_WGEqeQ_fp9w-IexvmMHT-EHulOCtWJwjQZFSiSgh6pZrz1MHw1-e8chrwUL8K5KRydsxZqgcDC5ItdXB7tQa1WcQUQBI6nd3h6y4TosbM6VAXQofDzfT6YI-rXxYXMX7X_siXJvnMaI1VwiNpjPu-3g-rVRG6rf6NFOSkjAv8CF9WLoMe7FfUdDt5_Plp4rdR7wMZXlJKT1UJ5UrVvBakb-7PNFlnqBf94gHPBjY639XBJleL8Y6EDhm1YNi9tIkDrANp636VceT8O7ZGqpgchGVg82IkRrZmsgWMoFTGDS3sAcRp5us3cWyknTcfYOHPhpKq9mxJMT22PnZ40ogeE04m7lUHmSEGH3urw=w1112-h696-no?authuser=3
+
+[5]: https://lh3.googleusercontent.com/_xL4Gr-3KsYPrG24zwyFu5jGp3vDxGsiBgKknAiff7z5lMwdC87KRniRtGP8R8HNjSOsS08oYkaCeks-Zzly5zCo73rS_iCnx8JTiQke-VRsY-9roIFKQYuPkDtdTd-vjNFmmHMKH3wCSUgdpntJS5JkhyzxzegUuRkN71kY5ymfVyF_m79otxcwjY-Js5uZXVhG2fhINAyD_V9JiTeQ9kjV48xmUwecXvxwXKFbCAjJ-pZ5NGUFZW0m_x2xFqSm_r-DeplArrxy6_sGaP-P6z0l-_sFCJGMcEkdWSruh8dmmJpNLx3zA_YbbAhy9jUhHfBGPtnTEN2ihj3D0HTk_4XWUrrMJfhSLvIn1dJOJZ1T-s1LkdI-z39oFitRV-t45kDuKLGZpTTdNznnkSQufJJbPTD8x-A6dd4Cu2EjNi76Bq_xUa6vDVHkq6twKXyLYIA3Th6kEERK5eKqrsjhgtcWo3GAlgv1kYjMWop1x87gJdnxRFArkmL0Uhuni9MQXItFlCyHaAm4smSS1L50OJO2qeTD7YFoaEAOFz-hBXU01zbOXq-89fxoMRMAaYwapvE8GfQwL9XXWVg3-YzjBVxUbDC2XH0hJRByIh0hCxwg_aCiqNiEaYqlgCwxAvJe_kmB7T9JEidqmR0kyAJYUZqpDOId7QnLkZehyuKbx8SevUL23iGc_QFlKnXfxLcezo09YAOcXDElFdedsXqFgspoaQyMLVJKEdPGLamteeUcql49s5RVxj2hggEBnkMlnyZtfLzJznYO85_uJr-PI1xSWmYLAOQc0fyT6-SGmJOm6S2N_0sZl7I0pC5xr0OGTGlRAWRn-8QRaeVzBetKl6mkM0j1kUPRfXajrmb9BA=w894-h652-no?authuser=3
+
+[6]: https://lh3.googleusercontent.com/xVK_CrV9I9CjFdvlt3Jr6lEyhAWI5GBs6hiRcUrdQieoHjthqIP05hT5IXst2cZTtDEOI03wkeZHMFELa9tRvIRAO23SofnuJ60O0DlHbOVDULTs52ux-aUhVQSBq-o93LoipUoUoHxI3DKgohUbwW27rEHl1kXXw7C02qcXone4KY0qjhtnqiyox4ErBTCETdS4nxb67uUqLFYCOMxmbitRUpxGskwmmabkmVUElZ6ymuzbM4IHcvyOf6BKAefoAbdFxDUHpjarP04C7p_JnfP3azIebj3aQROVbVZWD5MXn50ObCLXv6729BPkcR5SqETyPl7PpSwlRIjBW7klYCjYaFKxovIYUF5a1Ox5XSw-ibq2UcJ85ilUpCn4TMVGtZs5huMVBVu06mFvjvU7cTSHPWfkZ0j1qr5HzgY1xF0FzyCgxvDi_14bzCKhAXMMg8S9D8VDYwlnQqBY7rbaDZKSLUGO4VbLXuhdGzpxR6Mrn4-ievc9-Vy3MAYTpaD-5itobNFqAdRvvq4YKQAzvbkP_ky6baLkeFlkWcPy38GqgIzoxXVGOnrOPjKwrnyTz_OQb3DrlUNDNfhQLVq6dG6nTcNYP--IgKXtFrVww9O88T64GASh-tknUqy_GIYSU8KBNlFrlVX5np3As_poxUIB1PkF_3m6ayYW94bw5WOEyT7Zg9YWk5a5lyplGieCA8l4Sn0D-WVx8pvIffHDhSXdZj-tdhpJQgrMezYWWCj_gfZF3c_XdGb3ELpEVvVwddnTakVjsfH_tfw5IPytpcF9SB91AbChaJytTMZyVHx-1DMy8gCFS4UQPwCCUr1OCQEs2G8ij0Ufvm0ES22jiI-RjqRGDPzaPxPGHV49AQ=w1108-h132-no?authuser=3
+
+[7]: https://lh3.googleusercontent.com/m8YcGQ9n6xNbz6nsHk8m_3fvToQqWP85Zg5A6PYdmcnudTL-8OhnY7wDFpVJkeZAoX1-dxBNX4pD2HJh43Ft0fGD0PHDvaDffM6tYeoTK3Plk9r_0ZYA2JJU8wET4eNqjZyVsUvleDEfkfWPaM2Eo-IGG75l3ENvpZXvSQc6J1_eKFyHrDoumTldqjiLMhkmI7aEYpGB_k2Hl0Zmdd-MVO6lNCRk5rwez3IMoSUJzN92Oa8NrMT1wASmC8bfNLIUmibNXfaro6xBpgdMVu72L4_9d22AfFV5K05KAXrEKMrLaq4dUeTZLTyh5S6n1PCj2Hzc9u2yKeWObdm5QjByaAQCCsqqz1JcIvgPzcZYpaoRCc7XAyaNAv-HTCMQxsbA2dTELIiB-fQpmSxJYrxIMD7muZ7pBo2v9DjjWbT7M6gt5wvXtMFenaNzQJN1K4PNZT1o8wzqlISDaEOE60PceRbZV15U4uZXVHE6XB6oJTpt-WPdNNZ7NazBWgUBl8PAtb3HySYQ9Dp-1SQhn3zqhSMoGEy17zlQdDmy40owZWSHAL_G_AY94o__CqhLZpOaDHrHyU8W6oyYBaHLQE6g8TqOXdsYrZ30fqNJp8JzUIV4NzQi7yZeaT_DVn4iot5Hn5pjid3oPhq4l3ftSfl4eo8DAD7GntbWpxcW9X8LOHwCuSPUlfe7NIluIufzhHLM-_QgTARvwVuAFSpkIFDkzW9VvizWnezbdRZcYs5QtWoP1WNjD5eCFCQSC3sq1ukIChmGwtBrhwplssDXoU8SpjWl2GFLPdPEepEErBHTbUwKyrg5U6IGaiPQzLW4ihTeLoE8K1Rgj2dli4qOefaW_s-dexwCoK-Gnx0fnFOiNQ=w996-h150-no?authuser=3
+
+[8]: https://lh3.googleusercontent.com/Oge8kTbFDYnz14LgJb1zw7mbYS3mWSSOVDCKIDwmfhDuY3FvIOVBEPEgcjYXuwPmWydzI2CA6eY_mVMpZX9gHraNgOsZ0hgZA6Nm_1WEhqAegaHZTqeSQzy9E5WDdcwDBMKXnmFbGL2FVKR8cu3ppGPUb9dZnNBKORQIYbhPCrHQJ-n1NYnjO-V6IAFHUZe1kzd6s5ETVIQWssOlbthbOjvBRTiUk7NGTyhNBsfwDsLZMpd0-HSUsKEWjr4PpQP2qcPAlhZSdOUHqpTsjIeTd4vuwWKmj8rqIAgvOW-6U1yK3wxZ90saPczQaPrO5NZZgyxeIIkXlbTBN5FosL3u9Ejtbp1ZMdb-EffkQM54hibmvkjo7vm9ekkUkzCw9kp47ZhSZ6iKE99VgvXO7zKBl1mJPOdr0u-wMdXkP4ylirZYJldYUwLOljNenp_ZUUJfD32jxnldn-S2v_RHRv9o8ManK_XVr4THz4dZWLkRO0Ofw9OV063ShnMmxqj-As9U7yGxutKM61SzOWDbzdpv9rPNQnUPLRSUbZyj7A5VqOMQ1RSU1jaYsZR6hYZ3BQF6UG1alH8LPRIAw8yW-Udim5q5i3a5wxOpPBpGXjAp96AFrp4khGVaVxG080B87gBWA7-tNom16T-aiZFJZNvym6CtO9-urx5BwYJ4l6gg4GSZeJFD-qgxCXVOxX2s_eX8BgFN_bESpqlqt43hfMG2TpeDsjMVkGFI3JOdwaaiq8phdEkc4tJhDjPzIqXNIwv_womdtloTYLdblLi3o2cX6iHMtupjSaX7UBP_qZ8U4ZPWHUlvqKmAtPnOQNTdzbQuYAG9jcN5ShDxS1qBHL30yj9Rpv6JGLp_e-K1Ctti1A=w1096-h184-no?authuser=3
+
+[9]: https://lh3.googleusercontent.com/zlzjyIcKuPuLJdhSQkcgPnQhcqIr8BzQrywgGSLAo_80VC7XA8vf_iDul90fvN-xXoxvwTfKbDgXNTIwRZ3Lpeczm1tiPdgZQ3UNUrvxp8g-3VDzx01J7NG-jqiZRczfcH3_Lf7g5PYW2cvLWv-MVmtXWVuz5C27CQ9e9HXNRpA_2nWgBy9y3YqdmgAYm_CgkbElAtY52tcWu4bpXajNaP6mYXCPIBHWC9W4ISzpa8e1H6DVbykw3zDCFjfiHX7VAI_hRMRQc9b9jRt7dKzSBzSWM2wOjuutNfxQRi2ssNiEE356zF4i9Uljomo2Qz-TghU-7gfMtONVOx3uz4q6njt1uJo96bCQZ5zONplSYZT1WBzwRi_YnQmF9Siblita97jLyC2coJwi_7swQobaV3FW4ER-bfkw5nTpq5fZ8zbhUN3XzXSmHTYCgAS7wVN5XdUCbSKOcJdPhCndM3ZH2HCwZcrO2wXpwcJmlFOpE7YU34f9SPG-x9d7d8H2lfhsogm2NTMqkrvYr2ku35nsioPLs-sBoNI7BOBS_ZecKG-7_6n0VYapy7x45Hh79W11XjH70MxhvLKDeHaA8-wecaVKO64GZOKO1dkonZsqEfsluIKqiLQnGe9tMI86xKefqDdXWBMfGRQrAt8Q5_Dre8dGzHFxFI1SsZH77aIptXvCThi5NoyYaTcXljYl1OQygCydO2ew4SSAxTJKegYzfaOa6IIH3s2gsH9lwygj26AV39paqS1qB6ZF_PIe1CeLnJg3cA6beAA61jZDQyVTna5oz19wj9tLzOt06obtm_9ewRR1TSJk47_sSboYIyAUX9WBXdeU2N81XOFnpVgz3z4PctuhI0p8FzGP6mGTqA=w1100-h124-no?authuser=3
+
+[10]: https://lh3.googleusercontent.com/m8AenOKoFR69pZ2e4zunvNNv2JO63uzc7HoiDsbxRuG9JK8-BpFp8ZGt8VP3idvEgvDsSqLSB5CAgXqyF891FIxxkxvF6VPs4DPAOKkee1xLxzL71U_j535JmxnoNC5qZB0Xm_iPsVMy3epCbwD1-DN3FBhZnP0HW-vEOArbzSwcQxE1BfUfo-w6RFxbeYahPrEmVk3b1Vs5NPR1iq92gYth0lbN8xElRstNgC--T_eXbj4agcmrTGF_C1oocDdxvAe16XPk3850wX1UwG-V80LAzjoiupHGODbxp30TfIjw09E8eu5hb4G0X6K5qirJCBTX9wbBw-j0K0d1jW018MxGnwryS50k1qKllCqKQhTeLshHEosz9bBkn1e1tIs0qo7ohNwk3W3giR0o5OhgS4KA68H8KZkzXU_MXz0a2JV3d0LlduYkNEMHLCWp6AsvrbGwYVf1aHAMMMXAbTcNKczwF4mlWRZ3WwIHq7hOLfvhzSbVfcBFmQ051-4wOwRrkQrdc4xcPUvrC73ivi2g1jy5jxhpCC7n7q-8nTKEVUiMVieyHwUjD3bHqztCdiHjQyJZpPK8qmcMRL37sFnnyqRNwDvg79bm6-EuFHkWrjEVamt_uj6vdFPR4Ni4qXQ1mBXIOENGyFfuDv2km4SVQJSrI20m8Px-EMQEW4HvorTtV8WdRNiFEcIeqAVlstmRelgGQvRcL-M3amekRuLqiBA9N110UpFPBpDhgr-ESYkSpY-QtfSDzc7I6Jag7L7lU-IbNtG7qyUCSy0yl6S5U85e7Go3kZ6U4xIZalJ3vyzJGmpLlBbdG44E-Fa0bo_zHVfIZ6mlmowZhBGQuH4WoFCS-nWkkPZAR1YxSxJHDQ=w1104-h138-no?authuser=3

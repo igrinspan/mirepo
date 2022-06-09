@@ -59,7 +59,7 @@ En los 3 casos se trata de **descriptores de sistema (S=0).**
 
 **Formato de los descriptores en arquitectura 32**
 
-![Teo%207%20-%20Orga%202%2077dc494215664e3f8e5bd3109d09b5fe/Untitled.png](../teos/teo7/Teo%207%20-%20Orga%202%2077dc494215664e3f8e5bd3109d09b5fe/Untitled.png)
+![teo7-1][1]
 
 El Task Gate lo vemos después.
 
@@ -69,7 +69,7 @@ Abajo están el Interrupt Gate y el Trap Gate. La única diferencia son los 3 bi
 
 Tenemos el IDTR, igual al GDTR.
 
-![Teo%207%20-%20Orga%202%2077dc494215664e3f8e5bd3109d09b5fe/Untitled%201.png](../teos/teo7/Teo%207%20-%20Orga%202%2077dc494215664e3f8e5bd3109d09b5fe/Untitled%201.png)
+![teo7-2][2]
 
 **¿Y cómo vectorizamos la interrupción?**
 
@@ -100,7 +100,7 @@ Cuando la interrupción es una excepción, el procesador guarda en la pila, adem
 
 Da pistas acerca del origen de la excepción. Tiene 32 bits, pero sólo se leen los 16 menos significativos.
 
-![Teo%207%20-%20Orga%202%2077dc494215664e3f8e5bd3109d09b5fe/Untitled%202.png](../teos/teo7/Teo%207%20-%20Orga%202%2077dc494215664e3f8e5bd3109d09b5fe/Untitled%202.png)
+![teo7-3][3]
 
 1. **1**  *EXT:* External Event (bit 0): 
 Se setea para indicar que la excepción ha sido causada por un evento externo al procesador.
@@ -144,7 +144,7 @@ Tiene 5 causas generales.
 
 Intel usa el PIC (Programable Interrupt Controller).
 
-![Teo%207%20-%20Orga%202%2077dc494215664e3f8e5bd3109d09b5fe/Untitled%203.png](../teos/teo7/Teo%207%20-%20Orga%202%2077dc494215664e3f8e5bd3109d09b5fe/Untitled%203.png)
+![teo7-4][4]
 
 Puede controlar 8 dispositivos de hardware. Las interrupciones le entran al Interrupt Request Register. Este, junto con el Priority Resolver y el In-Service Register, se comunica con el Control Logic. El Control Logic le envía la señal INT al procesador, para avisarle que tiene una interrupción. El procesador le responde con la señal INTA cuando está listo para atenderla. 
 
@@ -169,7 +169,7 @@ En el primero hay un solo pulso de INTA y usa añidamiento full o algo así.
 
 **Diagrama Cascada**
 
-![Teo%207%20-%20Orga%202%2077dc494215664e3f8e5bd3109d09b5fe/Untitled%204.png](../teos/teo7/Teo%207%20-%20Orga%202%2077dc494215664e3f8e5bd3109d09b5fe/Untitled%204.png)
+![teo7-5][5]
 
 En cascada, el PIC máster es el único que envía interrupciones al procesador. Se conecta los PICs slave en las líneas más altas (IR7) del PIC máster.
 
@@ -184,7 +184,7 @@ El dispositivo se inicializa mediante una secuencia continua de entre 2 y 4 pala
 - La ICW3 se envía si tenemos más de un PIC en cascada. En nuestro caso tenemos 2 PICs, entonces hay que usarlo.
 - También vamos a usar la ICW4. Esto se indica en la ICW1.
 
-![Teo%207%20-%20Orga%202%2077dc494215664e3f8e5bd3109d09b5fe/Untitled%205.png](../teos/teo7/Teo%207%20-%20Orga%202%2077dc494215664e3f8e5bd3109d09b5fe/Untitled%205.png)
+![teo7-6][6]
 
 ---
 
@@ -266,3 +266,16 @@ Programable Interval Timer.
 Teclado. Break / Make. Scan, make y break code.
 
 Video Monocromo (un solo color).
+
+
+[1]: https://lh3.googleusercontent.com/NmQgdfZndh46mb9ZGuEQMJ9P-DnKZO67_UN71dXdrm8FYhNu8agSf_1x66JWDPPNyb8ZXXZ8Rr8WPsuuv9nJRFVUA0JPfxRebf_WqXnCDGWkMTxspi3p5F7mA7TlBDWHYOdWKOea1Fnz_rXRW2__BATvEvL1FjBHKRPki-ufRh634K2A2ww75cI6HKlIHUeimyEm0PUQMtpMADCqnLU7M_Jx0PVlj5v7CEADSO2JdakpaFcfHsF_zw6EkDhPLSHNM8y_ttoqwdU0Wi4glC22GavDCtbt8rN-jCTLDzpnDUw4h6GHLV75CZKvB9abGfRXze-eAs-ARuPZryKouqkhQp43LdDSgMrQ4HrOZ0blx6OSKMZLd1gKKDmHvmWtYA4npO4A564yl-W3F36GPyIhvF-KceWYSCBedrdrXpc8gRqxm8DccnG2Co1kdy8NbZFMUCBKHYP-tgVKOfMdQZ5nQiuR6v-TirH4n1W0LOPxgfIYF3oeZEcEe-fNDROOgmv5VHXcTpMnElIYaYAuT-oCiYgjbAFSoX5stjQgKGOD9QJ-w5c4zTF6WGgwRSBPlGoDJ24Ivf-bOL_om0ySbwbDKMw52AYV4PPFKaRUXz9uia56JWmpxwklHZMp50enWGG5eP0d827NluyBYH4nSzUCNSqyNkzcZXfkp9DoHFGPttspO1dla0tqlAO2yhLQRWfEhPYAj5pmT3Ans44quibQ0Gv_JlTVurWT2ffGIIVXSzHaNW2PsCxB5UqjTvTbv-U7NeiTehQhIkrJxOm9hSFQmkI4PxQvfn5wP3YMRNouYbk9zLnc1vXjXsSvdXUbLC-YbLmlC5RkXdgQzLsfk6yObz50SjV3r1J67Rkok-6ZnQ=w630-h226-no?authuser=3
+
+[2]: https://lh3.googleusercontent.com/2Q_lRc8pZh5ud90HUBJdQTbOn9QK7lAuc-vlQHPSZO1Wgqb07S6GNUbebaz939g7JdAHB-VfPdB4v5soEGxFd7VSUmZE1U_9egffkukHWTfA6VH07OKcnknmjDwrK2_0pJFALoqIZA3grO1H4lovYMfvQucAh48KOyEzD_0P5UUrQjtRKu20iYMauHaYsznajhQj0ervF3HPBowhDmh5GFZb8XIUwGShqaQP0iDMXtOicUmYrX3_BG5WKkzhKPsR_tBa30LLQL9FKcg2Cm5-uF5FS6bkGiktq1XPmqcGjkF0Ql7WAU8R36nagWETkB0JMMLiuof0tK73BjAu_TZ6KBiVpigV5boVnblgygmjOyODVrvYxbHQRwdDjg1xDs7Hc2MabJPxGdFFUaK3lwPpCPLBplQIlua7MuEqnhafaHLqqlg3AbQRshG3ALUp0g68Rg6w1ughRYrVt7CTPpnyGr6_GgHrWFM0BAjlswMCpFNBvPYV2TYLB3r9VM-CjhUnrB69nrH9QdyQCyJaYF7mb05AYvv_Kd-2JBWnqYwy2ayeumMA-7g3do4jLm3wAnk4RARqFRHe98dLZj74dQyaMre6zX5YKbNluOKwjoz67Qq4ATsEqHg0XxmJeA5ETJ0rQiKVaZpdIIjMd6-xazHulFhn-egEFylrOjdsLeBSDqylpy5-_aLyME7A8cBN4p1QkU1CMQ7R3jyI_bJ1YUcrlb_hd7wiv-zfB7nsy0wmN2-gsZV84zyaS2wAwqQfl5rESEJZhoWQGyWB4ynG499sjYlc0dak8LBb5h6D-nwNo2HhGIfMbJNvHtNlCFneZUdPxm2pdVbCU05U7XcyizNl_Cnc-29ERw2tpYgsvJHrVg=w924-h614-no?authuser=3
+
+[3]: https://lh3.googleusercontent.com/-utb3WI38pp2ILze1VESv2YN8gVeAz3b75hvFlQeo4JZflBoQPAI00lhWw4lgA5d3-OvuxHYv4AuVyIXt2afXuiBPalp3_XBC4uhxntZ1XhEkYSY1tkBL6Ffsw7QwMzvMuSOMR5cJIbJoPyNkbUuCmRIw264wq7lID21h1w9Pm7xk2eQfnpSdU4IcgUAz04lxOEn6pMgyVgNpU6GT2z2mftMhafH12k49Kqh5dJBaCB-gUYjfthwOWM6MQM2BLYyuUhRGAw_ZYf4RAMjNALmHmFSSALy8xzF79wp0hwATF-OzVNumpSk-He1Ow-V1jX5KrzGRX6KiLRJzbWKXJgRBMrHkZfmc15-jFzbJZ2bSmzqusEU1HL-EgVFZzm1IEZThnpYxPCEdG9PY6KDR6m73W-NkRIBuKhCIBiKbi4bVXFJo4P_YfKFzsorQl05CRBhHvRYZP-VYh-QVHS4d_-q51OVEiPJUQnx8JxfLvzyoVSRr1-HLqBHwYhJvkFmLZYta9NxrDIeDJW5CbHnp3ADQYglg6y-RxcbQO1BAta_Ol3_a9hBZPS1sadZJE6b1tKuXc4ie3AkAIlaAnR46_jLsOg6q_9v_QhL1mlRYEY6cpPsCvYLxKaqwOEMbUQX-N-C09yfFfOtfAHQh_6I9klAv-fGcxbrWRPKQgRXpyug3lh1dTpQL8lYuxKfwKyF4JtO7xJZpHPZS1zPieoQqDLlIYKZ0n1rTuyaupaNjcg9meqdCj7yIzfAW7dnJ4YLpHe8nPkjWPW7MQZypWVxAvQ78JQejh2pUm9DhgPW3YHYAF17wLip50oPjv8vQVtweRfePHSb08gpspjJc-parxBNdJTTNe6rNS4_52EiE9sInw=w834-h608-no?authuser=3
+
+[4]: https://lh3.googleusercontent.com/SkUCiTkZ69d5xQiAW5TOUjjOxOMcSl8jL6t1T_CXsyyHJpikgMzsgPUZZHVlVA4yM_qGf81h7kLbft8NXH2it-U_H_AEXWm8Cm1GCkHLup06MTNEfCshuc-CcbtfKC5judbyYnImevNurcGAHtv03IcZQgGWdiWPdgFkpCWFKdP1KsjJnCGCtlLrYWs7WyZ8OBJZF0Oe6qbNnYqfGEYwC2ErqUhmac2SSib_a0jn6l--CRn1QKQMCUy9zW3fPtfT_nkkwIr57g6Qvje8DNyBIj8zaG1Eg4rq1KtMm9NFOm0Us9KcRkSLeVEU944SDI5_Nx-KVCi3Hoa7fGfNUb_SWlvH3mSkHGe1SkLjUoPkmKUBS5tldATgL81zFs_v1CCETqGP0RQ9NxG0-w2fYSU_Me_ywJPMAfQtYAd190yp_5-bm5Pm2l-VMrl7RVL48VtW-YRxhdLfkHjNl8Svjx2boG1vgHL-p1v34mJpf9JIpfozuSB9b07a7T1IH9yLLW6ocnHdB2GqyO2b9vz7LdfyLVZIPjFJ813L7xCGP2TaHwMr-dY5KWp9cob76Flu2FLXcM5-KNCU9gEFinpNxwwY17tRwsiYR_RFZQsLCngSq0wD0cNpQSlSFwNTWvHSXnQXyz_6FR6tzU6kZsyBzVeq7zVglXDpeAsCpi_L9mKrqPQSCXyzTg5iDIQNyww6zH9zX8mB9ExSmXzszSSfrcG1GEfMriw874P5RwEJ24QToJ7FvR5Tc9AmJAiVAQRhrEvH34772U1eShu9VvRJt1SyMJnhra4FjpHhV5ROn9SMjCm2b4VRYJzK8eJhA1zqD4Ww46zOtGbmh2q9mezFh-VnPsz7xWAxFXP1OdSt6Uxuzg=w858-h606-no?authuser=3
+
+[5]: https://lh3.googleusercontent.com/3zp56T3a53cPp_elfHTuwm3mHH1BrglRAswJP2ezXexepevsPRr9zWcRGtZLjyFx9X99LQjGITCOK7T1bWVzsPirhvBPhQOd9s_6sNqxqibZnwgM2AanNoATS5A65lkmGTqfvpeX_Fi69oltAKFXRi_Ic76qPG6ORrhAJKQU2P0ROGsgqsxRjp3AfTNlbg4gHeG0egRvpXo2_gbeKSGKLQ4fQx1UyONRWek16nQchknnyqAxQm5e0bU5QGYU9mdywonulikoF-J4cd6uHnsko29bwuHB4egtfmbIW8CLixZzJoowi1Rp_h6JaLMjiFK8Ict1t9n7ol3n9bRuCVjhcGCN2J7TLOu-20WJzE_rPL7GMg7baSpSizj7MOIil-ETbl3aZH2rcm2CgoDsRnpFt1DH038E-a2qjM5CcMhIfMhxLbzkmhpBblg9Ms7XmIlDlVqrXrRHkDlTSO9wmdaNhi0G3dvCErOcl2KzZHcQoFHGMr4l5wkiw21Fdsq_3-Ze3153uAbWINHM_K4BZxyx1EJ9w7aWOGu_vtm3kwlMZHDhKUU_7lALb6No82XcKHGJTU7Rlo2Gh9oMg7IdO6fQ60Rxl6kdSZNl-pvxudzrO7ahNfUR-nWO-0Yx7SQfyhV6dYNb_aHn_SePjIsyBbdAt9LEC84MXH2_m8a_xlGQL9lNKgseOrzI6gKGf2W9_TnBaZwu4he2-0il6NzyT8sHZVrPoU3NyD45f8TSn1R4qLGClf3XINjorv8NNsD-OR7LSNKuwa8JGFYx5YKmX-ZOfhL39YzplbR8zYTT-FGN27I4GifXzqT-5eAZBYBdSvvxa8UTZrrNB3BNMCpYO7qHSK1z-1OM9YWe1Oqf_Hodkw=w906-h762-no?authuser=3
+
+[6]: https://lh3.googleusercontent.com/IihfbekVC5rC-K_8ia4cWAxH8ux45N0E9N2vc52-oUpf6MaawDFkNf0S9kFOkYcj3TraxZolZdjBe9YPOrOxBcD7_GQMFv5zH1l9Oj2diUGRaVP0dql67PObHLac4SjJChny7005XGTem-QroZDewpqvXig76lryrXwCk2mVJVrWnGOBZqbjhkCNuvSx8F_iVVzcI92iB4lPgkBlzhlntbFmIOTKSLuTcuoeZkb5w-c0aON1T3iH_NgxScifS7x0PPBbx_rAsEfWb1zobNUTTQZ02PWbhpOraZMvqxYxA2eARS4Im2RRztXwWJMW7dh3iXZ03A3W1MTpIBheVcrm-jaaWU1Tetx0gxED6AgWEZQ72iGJxIYyZIgDDEi7LxD1dRVevPthg2xf-SaIAywbPTRNEtBqbDAzIpQxGPm9NZaDMWKLs3GaejE2OGEXevJjPkP-g_r38xER3QBQK_1zHYY0EiTjxH3qqGB5VvObreV2-caKYIYQrO6pEQBowxhJxrQk5RP_JvmnH8K1cULtCLdJZC0-YQW2pc_wW2aynJbIHbYwyFiQ-q8Je7yhyeF9rBhjBlAwSgddWSq4fmWU4Mf9VkbdM8qIK65n2FUEL6ijsa1KmAlmnRRtse1KPbaGxyv1E4ko1H7U0VM-URydZiwiYXi4a17qjGJaYetT9UgudUvi-txDQ9TUnAa6vgZueCI5bQaL2bVhOsn0ysCP5h0H-h-D0tJnX62hJZnn7wcJEMdM3HxxkI7rth81iPaCh-8rlU9iZsxGznCbtGaRx2MslcA2TjBCJyqfZ4FlZ2nlaf1BdvXcJNfMXGaaNs3PE-Nn7hW22hCUJjSH2Bj_ffeZhEJ2B_sMXJwhf2lYHA=w384-h638-no?authuser=3

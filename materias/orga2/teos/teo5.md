@@ -283,7 +283,7 @@ Consiste en una tabla en la que cada Registro tiene una entrada, que contiene un
 
 En el tag se escribe el renombre del registro. Al prinicpio empieza con el bit de validez en 0 y en valor el valor actual.
 
-![Untitled](teo5/Untitled.png)
+![teo5-1][1]
 
 ### Reservation Station
 
@@ -421,3 +421,6 @@ También podría haber un poison bit, que indica si la instrucción ejecutada ge
     - Si es un branch con predicción incorrecta, flushea las entradas del ROB y recomienza a partir de la instrucción sucesora correcta del branch.
     - Para cualquier instrucción que finaliza correctamente (excepto memory stores) y para los branches con predicción correcta, se copia el valor del ROB en el operando destino.
     - Si la operación es un memory store es similar solo que se escribe en una dirección de memoria.
+
+[1]: https://lh3.googleusercontent.com/iziZvnYyo0tOw4KEVDbeLTA_RczGylQd8cCneFlyyfpZXtayC0pBGUVZQJxgpv3G2d5qP8JgamusMSXlhtkQNNsbYN5snzJjCoNvYnnRlWeqFPrqBwqjDIcTDR8DjwH_ZiOvcpTru3D2ieIAaJgwGTTJirLPG3IWpNZh9fOEnD7ptbGkE2mTZzfGqrSQp92xkuQBfqB_rqutwclSz_Hck1OYyXEv2Zur7f7pE4gAx6wRdD1QS327V4ADHdvsJVXl2--sUiGdAQXca8vnC7V2T3yVbi-pqq-o_rP_E5egPy24uAa0pWPeaU29Ru-IYmBm20IGWjkOzkLb19C8SfIZaA_kMEd-XpYcXQdzMl5audjfY7GTLlHKJ8mC3B_duy3WUimNzduroCdTUd9Q2_xD0CInTPq7BsxeauJtSUa_t4jmHoEcgrbp3Jv40FLyOu2C2vpmq50V0W7Xt3Iwx_RONHN0kgjFF2QLPB9RHDwlNqBihFKfdilJubbpYslNJvbfqSdML2WPRyx5worilIowMYnXQlsUG60CNcIviB59-FlljB6dpKD6OK8VdNni12lRAoA2EE4SIGPqjEC0cZ8DXYNBO8VORs-Fbbhh__j-3Iu3XtuhpuyPNAUHMeiHo62zGs8TkDFdH3qEzwyrWpPhvNRp6bRj1JjUgd_RU1sJNhMCzZ3bmwT7JfBsXWEOXQSFBQvvB4JGr2hISz5vnqskNkaB8l5GX4YJMilYjt6MinqQP6Dw2D3nkDRC8D_auAFmyAq05bt3k77XhY3scL3v4z8ML3GER6bk97W5o2YvEdCmCYLto8YQkr13dOvZxTT4zRqtquZRVQrQDrtrXh-W-VIYd6J-7-rpSKZtHycUJQ=w778-h750-no?authuser=3
+

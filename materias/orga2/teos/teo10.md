@@ -21,7 +21,8 @@ Por cada cosa que hagamos, va a fijarse si está todo bien o si tiene que mandar
 
 Modelo de anillos. Hay 4 niveles de privilegio: 0, 1, 2 y 3. 
 
-![Teo%2010%20-%20Orga%202%20f0d6e64faaee4426a4266f152b7e63d8/Untitled.png](../teos/teo10/Teo%2010%20-%20Orga%202%20f0d6e64faaee4426a4266f152b7e63d8/Untitled.png)
+![teo10-1][1]
+
 
  **¿Por qué pensaron 4 anillos?**
 
@@ -82,7 +83,7 @@ Son un mecanismo especial para transferir el control desde un segmento de códig
 
 Se basan en un descriptor de sistema, que debe estar en la GDT o LDT, y se acceden efectuando un CALL o JMP far, en el que el selector corresponde a un descriptor de Puerta de Llamada. El offset del JMP se ignora.
 
-![Teo%2010%20-%20Orga%202%20f0d6e64faaee4426a4266f152b7e63d8/Untitled%201.png](../teos/teo10/Teo%2010%20-%20Orga%202%20f0d6e64faaee4426a4266f152b7e63d8/Untitled%201.png)
+![teo10-2][2]
 
 Se parece a un descriptor e interrupciones. Tiene un campo "extra" que indica la cantidad de parámetros con los que se hace la llamada. Son 5 bits.
 
@@ -97,7 +98,7 @@ Una vez que hacemos el CALL, en la pila del procedimiento al que llamamos se gua
 
 Si usamos segmentos conforming, no se produce cambio de pila, porque el código se ejecuta desde el nivel que lo llamamos.
 
-![Teo%2010%20-%20Orga%202%20f0d6e64faaee4426a4266f152b7e63d8/Untitled%202.png](../teos/teo10/Teo%2010%20-%20Orga%202%20f0d6e64faaee4426a4266f152b7e63d8/Untitled%202.png)
+![teo10-3][3]
 
 ## Protección a Nivel de Páginas
 
@@ -122,7 +123,7 @@ Sí podemos hacer un granulado o filtro cuando definimos los permisos en las pá
 
 Así se combinan los permisos entre PDE y PTE:
 
-![Teo%2010%20-%20Orga%202%20f0d6e64faaee4426a4266f152b7e63d8/Untitled%203.png](../teos/teo10/Teo%2010%20-%20Orga%202%20f0d6e64faaee4426a4266f152b7e63d8/Untitled%203.png)
+![teo10-4][4]
 
 <aside>
 ⚠️ Una buena práctica puede ser setear el PDE en User y después decidir para cada página si querés que sea User o Supervisor. 
@@ -135,3 +136,13 @@ Porque si ponés el PDE en Supervisor, ya todas las páginas van a ser Superviso
 ---
 
 Faltan los últimos 2 videos (20 minutos).
+
+
+[1]: https://lh3.googleusercontent.com/bgiTQpqu9OMK4pl0G7p1R8KI8YeKAbUSarpS1zKEA5sDg61sG5u5V1HL41pLuOmTznETVuUMnb2Q3XrFQPOMUAH9hIQaGE4iddnJo-KMydMtcc7SpQRx4p4aP8LPzqFo8IXHnhf5HM37jwsieBASs2LRF2zfOrU6rcsNFeKHeYGp0f0K9l9TCJWPE1yTmpr-SLSMnrjsPIJhIhc45aQSuSDDkoMbxAjMCrUPYqPymAkDuulmHj_dGMFZMiucnhVeE5v1MDnSO_g8HXTtU7pLzNz5Te_dRJpAmP2TOc5FCaAJcTZpP6oAogn6S-2oPWv9JM0dRAfBgujvLLZtcbMu7wyF1h-z2j_zUh8cKxq3YtMcnOCces1qUT-NWCckseNbWcxt8cJ4XJn7Eq-_Zouljkag4rjME20tOAjZaNA1B6PaN085FXgXF1LItvORKAztd56do4GzGwLGUFQ22NL-hWMtfQI35t3VbwcxOV_Cq9wggyMOBIL0I3-lBSYt43C4tPcRrdHrvDVHl1IdDGONyb0E-BJXCDRi7U_Y78B2-KxfYjvN0wGn1h4HOI4oSPqNzWaF69KRFYjd0MDbNoOfp833Mgk42DVmqu6zT3VOq8IZVAVc8xJu4gE4dK1D5B-2EgG1h--ey5CN0IumfAkodYPYM0yfhFzHonmRa6UtSlG_esPd68neYaLUiWZMYEEg5DK7Qh-VoL8idFKptosAxRUpdFRi9nz9OtsfIRgxVNMtgiMvP_O--NK1DCGNTZzzU7yI2ZJ_YJHKAdtjCy97IRtRmFD4oJbgm2RN0204gIFnw1nYfY5-j561FjhmgntUVzb9SG30hWP_5w7Mlmxxc7pTQ0S4UuAuBAQH-gDApw=w714-h664-no?authuser=3
+ 
+[2]: https://lh3.googleusercontent.com/MMLHU1L9EmfNUyh5n8m7aWLoKb1qZzgTie1Jb2rWF5GIGur4TbI2UU-dyfthjgiOyiY8iuItOXSahYJ10-TUPDk6UBXPOyTZ22Rb9CFE4JWd_kztb1O_FR9rvQ2UBysNvnGLVnMSy0ju1jZbQnhBNd8gIybWotMa98eXV2hvTbIEg6dvWOQ84H4B6H2o2wBQ_zbUrVSWs559T9vOaXbP3P1-1TMBN6sUfvbRa-IO_umbbMnyg8OtFDqHCnoLpUyECVM0z-SlCQmAmfPbo1ynhhvLBw7aZMOiGdifW1SzyLeMuJ3YLdihpSsZyTbT6OL-XiOwJv8gQHtYMxuEqOSc0tKmNB2wfmPK4bWXQFqYZ8YHDDqWTGtsvAJ2qDro2D3NQi-nYoXm9WtLxh3hxKL1xkb6vNLTv09jNGKCW0NVbVvF49d_U9VloiOFBy_34jafhMHgEHRt5CNFwCC6KPWJmuyUoAzXW_WxfHPPZ88zsloeSBBPu4pGGlCWtCspFVXyVX3Ftv6Ab6f2qwcacX1Inrxiip4Z9gdringIGQZh6NiJLQ0rdZYU13W1kKugfaZ9jWI9TdADbXWMmeifXVuRGuvg90Hr1mTd0tG0uGfzdtddVrWhvYkTpNjl6APmQ24g8oikyJrResckM_vpLr80rvjelykzrx5bFocoDTiuOYgM9hXY9wT4RyVfhEPpidiaI7QGvLcOHTlBVyWjhNNa9nxSXECYkLozk7_enEocS12cL7ZN_xTzYmV8JRQkqNkA5kp3VdOvAJA-DlEF71jvfj5zFcJL0OvkOsLUtZn0bXyjeJE0pZeWtVoz418OcVRZpPgLPwU-OhdaR2dyM7g1pyew-JCr6HzfO7yDQsNb4g=w820-h620-no?authuser=3
+
+[3]: https://lh3.googleusercontent.com/hxK-bFjG1mFvbxjQwWjLtRgAYlVC7-UPnjzukAbs4w5PjRveMnlTmkVmnaIgDm8WoZoTlIOqh5ktoSOuk0IqN3ysbLA_GS07FJIN1XWRPz37QdGR3hVcjuSgBxTDzOYZwU8GsUdc2TLtli9gU9lksI70Cd8vkdLkuwCDOKPIhVTVbk60_p-C8oCCM-JFBweCodK53tF_rCgStb8-WXg77x8MUVP6G8oliOpI44OPCIyHW50GMcj79i8PBznsW7_bj7pqqsWFV51tdqgkGwKhPA1Edh18gPgRY02TuMiJBzCB3ZHGFSbXciPfIzWJqjs8KUBziXSMTtWdgeDgNOnWko00VsBhqCX3WypmIfQpdKdzhU3_wqrSh4ERKJzAZCBIKvgBSy0Xwkms0cqzxN65K1YB3spWQLP1d7jCg8XiQvIx2Vo_8c-nAX64hxLDMKuYvoP_pk8vDj8JKBRY1uBs0MahKIfBkY-DY3DzdIAphhf6PfHUwA0WzICFjU_VQlXEPs7O2yyjVAGfhxU62SVL2aL0-Yze4Erp9d3LLn3CcT8r1QkYNszM3x4LNqq7t16wY_Nx7IqanRgCPOv_mxnRG64vHaqMeXKuOX8sbmBc7QESMc1rj9UmYQTEg0dTvd2osCspHL3vVjAWY0s-U5qU3BctPq7ue7cFudJFXpxfNh87pvj74qrzQMy5yp5tLgjlev6LPD59d2uDUmI_uYqCM4I-qjt9OS1dQG7VfZYFjbIj-l4WuAdQpE7qxi6jJq63OsJW-AI9GnWbZ3eIAtvy5YorKFDhhQD3iSidY7LF5aTOEgbGWltmj6hdabMMM4vz0HnZBfbufwaa6c3-20gnTxmPmwixu5C1dXG3ECWT-g=w1012-h650-no?authuser=3
+
+[4]: https://lh3.googleusercontent.com/BsNk6CqPNLMmhl4zqi2nfDTJt4cAa2Wk8Csy3SU6msSJ4d2pjR6bYO0a8y2ZGu6avHb0xJUz5MJMunJBnjg5VBYIYtHFrITF3UqdT6onVxGBLsRfEM8Ypix4HmP4nnWPaZK_7HVghtlFUboFgHaeKbjJ0UdA3xhVo011ZpKpdjQehAKfUi3sxr0oB0TDWXDJhWGImZ89xf2pt5XJS4fQ286wA4q5hsrzwMJT85nTo5RQWlhNe642ratKmjK6sXK74ecV8XXmsP0hT0JcI2865NY20E-U8Oc-ZiobrgG61WGCVi2CULq4bAbmwxHAqSx9TB6_OBcJBvIHTegfRvAKTO9YGOnp0MNETiwrSHRYMEZnpN8NMvVdGgfwb6YpyPXlqurPYQ0gTWbORTBcUS8zrSCBeE13o3A6Zvo6VslXKcCTZGJyMblK--w3yl2Yguz3rKR9iV6vGYiAdSmQJ1Vzq3tgc0HhcNf5JSy6BGWBIE3CXwgXDMMwgf8LsG7oNdcCwWdq_9Kb-mEibzbzsGEaLgcychvwO0QExHE-vpZr4z8-Tk9uUtzNtvfnO_u-zShwE29VMy_Xt0XvXTl8kp6A8PiMz3jQXAwkUnsljteongEhO4SKnpxWPEvb_exF4eMWdl--HU8DJQSOE_mSRF7FeDHxRileO9UFNZwm8nXuFS4yX7O6p8cc8ScNxj79v5NoywZoANyNpbHH-z0XtdLHsZ6bNA2dH-wnXGIRITD3VUWaGHGGk1xsvSXtGaacQcv8US0n1YaXe-poaBwlGXzZDoZerUj-UQsUMYw0uApFCs63IJ68HlIqfcpxV13XBhY0mIdwqidCbW6OX632Qfif8r5EIwgz0_2aQ_zsHjkZPw=w996-h650-no?authuser=3
+

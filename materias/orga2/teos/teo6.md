@@ -28,7 +28,7 @@ Otra forma es enviar la señal #INIT, que mantiene los registros de la FPU, algu
 
 **VALORES INICIALES DE INTERÉS**
 
-![Teo%206%20-%20Orga%202%205a3c4fb4431245809831255b99a2556b/Untitled.png](../teos/teo6/Teo%206%20-%20Orga%202%205a3c4fb4431245809831255b99a2556b/Untitled.png)
+![teo6-1][1]
 
 El procesador busca instrucciones con el registro CS (code segment) y el EIP(32)/IP(16). 
 
@@ -46,7 +46,7 @@ Intel agrega "registros caché ocultos", que están asociados al registro de seg
 
 Los registros de la derecha son exclusivos del procesador. No se pueden tocar. Los de la izquierda son los que vemos.
 
-![Teo%206%20-%20Orga%202%205a3c4fb4431245809831255b99a2556b/Untitled%201.png](../teos/teo6/Teo%206%20-%20Orga%202%205a3c4fb4431245809831255b99a2556b/Untitled%201.png)
+![teo6-1][2]
 
 **Limit:** el 0xFFFF es el máximo valor de offset que podés tener, porque en Modo Real, los segmentos tienen por default 64k (direccionable de 0x0000 a 0xFFFF).
 
@@ -182,7 +182,7 @@ Intel hace una combinación de ambos 🤨.
 
 **SEGMENTACIÓN vs. PAGINACIÓN**
 
-![Teo%206%20-%20Orga%202%205a3c4fb4431245809831255b99a2556b/Untitled%202.png](../teos/teo6/Teo%206%20-%20Orga%202%205a3c4fb4431245809831255b99a2556b/Untitled%202.png)
+![teo6-1][3]
 
 Los segmentos son tan grandes o tan chicos como el HW lo permita. Se pueden solapar y son muy flexibles.
 
@@ -202,7 +202,7 @@ Intel organizó el espacio de direccionamiento en segmentos.
     1. Identificador de segmento.
     2. Offset o **dirección efectiva** a partir del inicio de ese segmento.
 
-![Teo%206%20-%20Orga%202%205a3c4fb4431245809831255b99a2556b/Untitled%203.png](../teos/teo6/Teo%206%20-%20Orga%202%205a3c4fb4431245809831255b99a2556b/Untitled%203.png)
+![teo6-4][4]
 
 Con estas direcciones, el procesador realiza algunas operaciones para pasarlas a dirección física.
 
@@ -230,7 +230,7 @@ El espacio lineal es un rango de direcciones contiguas, como el físico. Inicia 
 
 ### Selector/Registro de segmento
 
-![Teo%206%20-%20Orga%202%205a3c4fb4431245809831255b99a2556b/Untitled%204.png](../teos/teo6/Teo%206%20-%20Orga%202%205a3c4fb4431245809831255b99a2556b/Untitled%204.png)
+![teo6-5][5]
 
 - **Índice**: indica el n-ésimo elemento de la Tabla de descriptores. Como tiene 13 bits, cada tabla tiene 2^13 descriptores.
 - **TI (Table Indicator)**: selecciona en qué tabla debemos buscar el segmento seleccionado. **GDT (Global Descriptor Table = 0) o LDT (Local Descriptor Table = 1)**. Hay segmentos compartidos o accesibles por todas las aplicaciones del S.O., por eso existe el GDT. Cada tarea tiene su propia tabla de descriptores (LDT).
@@ -241,7 +241,7 @@ Vamos a verlo más adelante.
 
 ### Descriptores de Segmento de 32 bits
 
-![Teo%206%20-%20Orga%202%205a3c4fb4431245809831255b99a2556b/Untitled%205.png](../teos/teo6/Teo%206%20-%20Orga%202%205a3c4fb4431245809831255b99a2556b/Untitled%205.png)
+![teo6-6][6]
 
 Estructuras en memoria agrupadas en tablas. Una Global y muchas Locales, una para cada aplicación.
 
@@ -309,7 +309,7 @@ En la tabla, los descriptores están acomodados uno después del otro. Según el
 
 </aside>
 
-![Teo%206%20-%20Orga%202%205a3c4fb4431245809831255b99a2556b/Untitled%206.png](../teos/teo6/Teo%206%20-%20Orga%202%205a3c4fb4431245809831255b99a2556b/Untitled%206.png)
+![teo6-7][7]
 
 La tabla GDT y su registro deben estar armados antes de iniciar el modo protegido en el CR0, porque vemos que la vamos a necesitar.
 
@@ -317,7 +317,7 @@ La tabla GDT y su registro deben estar armados antes de iniciar el modo protegid
 
 Ahora la cosa es más rebuscada. Porque cada tarea tiene su propia LDT. Se usa un solo registro LDTR que va a ayudar a encontrar la LDT que estamos buscando. Hay un descriptor de la LDT dentro de la GDT. Es un segmento de sistema. Por eso el LDTR tiene el tipo de un selector de segmentl bit TI siempre en 0.
 
-![Teo%206%20-%20Orga%202%205a3c4fb4431245809831255b99a2556b/Untitled%207.png](../teos/teo6/Teo%206%20-%20Orga%202%205a3c4fb4431245809831255b99a2556b/Untitled%207.png)
+![teo6-8][8]
 
 La GDT y GDTR y LDT y LDTR y eso lo inicializamos nosotros.
 
@@ -327,6 +327,26 @@ Entonces es un garrón hacer esto todas las veces que tenemos que cambiar de seg
 
 Los registros caché ocultos son registros internos del procesardor. Cada registro de segmento tiene unos de esos registros. Además la LDTR y TR (task register).
 
-![Teo%206%20-%20Orga%202%205a3c4fb4431245809831255b99a2556b/Untitled%208.png](../teos/teo6/Teo%206%20-%20Orga%202%205a3c4fb4431245809831255b99a2556b/Untitled%208.png)
+![teo6-9][9]
 
-![Teo%206%20-%20Orga%202%205a3c4fb4431245809831255b99a2556b/Untitled%209.png](../teos/teo6/Teo%206%20-%20Orga%202%205a3c4fb4431245809831255b99a2556b/Untitled%209.png)
+![teo6-10][10]
+
+[1]: https://lh3.googleusercontent.com/jlLaJ7aWV_TOSoztlEvLAIT7TQk3bfl-Sx9Gmj8X6APsJX1ROEP_UiB-94aw3j1USk9HLjB1Gx1PC0AWzldm7cu5DGJOTmyJ1LQwhLh4UmonkrroJjLaP2yATdUOVTqR1uxvKxYgCc_cVcLFoxwJOG-b4pdtLtvNqS0AMsDQzDLnnNCRlkCCwJkuoBd3Htby7aqrLfDzLd_U_3Xcf8WFFep-XsukZyTDtSeyRQyXngyhn3B5as9UKAJdMHNBrx1PoJFI0G1VH7KxkoxZtVJWLY24IQ74Op6VRPAeRp9Y0ByHdwPhIPOPMsy9-njTe3LjyIriffGiS-Hj4ciaFJ8ZCMpWtfeCX1MQR1csp-sflD-sP2Kbnad6nC_-nS8LfwTekj8zP2XnVwhhvBi1m4sxl0Zt5OsTk_YKjKHtfyAqPJ0wE60NqXGMVudyrwRGC2ygdu7R2xpUIXOJBS6wB0GXhTMM-FqyuK2Qs9w0Tcl5RLYNtLPcw0mrYOrCny4jVaHoFQPiJBgt6nM71xMjeWfHToPM4aJbHGyYv2woLcb0rChXgzkE8CHCWCXYrUcht7h9urTM3bkl59VbONKTwMgabhlnZiSq1CpVNM82iOAjMt3_KdqStSomy-pVRxzw5f92PWtWWCLQX9JDD0Rd6V7qSuDfrD7Y2gt4YQVvGD5phjVHsX--dKZod8YolwsmRFIHfKPOqNKD8nJ2YmNQV097ESEBVS9gAy82ugmZYVcYMxeVGW5ln6i9pHrXilGaowDORG_56OpXJjygiLErVfGUbIMI7AWksvvyF5RVEljk27x_2fbTrCYu_pRpjaoLz-QfzhG9I76efSN9qOpJRuLeakwKL-DYP0SrNhEYblR6EQ=w844-h646-no?authuser=3
+
+[2]: https://lh3.googleusercontent.com/SSbXMswpRaWYNa3_5uy9BDwNaKaxdN_y_3nU8E5K_G4B8WFC_CLETmy9IxhnUIca4-S_5srOkVsvHELB9U50bsYzd7vGlbwfWZWhhYXp9lL4IrhZPB9wOFr7HtFc0shFN7ZIaacq2MGELybExzMS-yRGvMafwFXu-eZOPokMDkxJcXcG1xhc-kxrxHqK0DdHHSLEYPlV99QDE9DedSlYAVRBLtFp23mRdbvrBwLwLiLLcpFGwxXM26ACHI6EkMWaKTxIBTH8ugARaP7JlMaQethXygLtYqOer3WG4eZg8nJXFPB1rM5MdbD1hrKCA6m3qFx37_f2XzzO0nXhb3i5VV77aEleDZMorOotUMa2jNe3SkHV1pBnz371FFsLBGnguseQYv5GFMhajnAhjXMjA_tAwodtfuXIWJGDYupZ6l1mRhEftqV-5GnoJ6-0GYMZlgi2VmPN7xIXOJoGYiPdRToPzo-sdDFFWRy5hq-bmVHCHELHrdkxFnuwHhboccOh1ITBAA-7PtIpHiIZC2IvYOfRUxQYa0dfrJwlbQBVkfwTn5keG99_kfDkwtF-vd8VxILY-IO5JuojnEfV99pintIug5Qw86-nw4HZIZqM1vgv6cuXxHp-tSRM12DaLoTXQO6yNBt-EZOtjKfbAY0UtJ4LhiwjwP6jrD9HoKnllBkXj6Ez2E7Ru5y0lh9t-r-BIzieleyqCCUMG5moWnCi8RPLVocXogF3Z2CA4kBdR2nxs-G5senHsEXkrLR61io7J0f0xpBLPXM9Ua7D1jGxPcPNN7IMfbbgH3mUWJreQ18eEUJ4Q8O1_YrzapiBp6bbLLlLPlihAzbNohY9kQO3IPfePCOZv38M9IjXOpEezQ=w1140-h712-no?authuser=3
+
+[3]: https://lh3.googleusercontent.com/Ve93wXUQ94sBO_x2GnHjSVkcRcckz84oySNMtz_1_Fm62x5y77VVzBh4hIOj_lhttKvuvmxaCfTeIF5oyHqlnteJbShs8BOGJxV3T54NPx3OGr0oKiu7TdwSRZowZzWaCkKkT5-rsphrOg3JQ9zXWKJ43FIZKt_LNOPoHJXZyNnnIHal3UUxbgsN2SYjlxR0GnP1pRoPbp1H5_l1LUZpwYWCNDQckJOMd7Do-p1enAQsnpmXyGVhy2nAOmnRu3_EsFJN_GxW1kD-G0VVRGPvjdqJE7ODBVszVAqvOpva7wVg62c7TZeMnmk1yrodWj6bsT6RInKxCoN81RrvYztYqnGTvKiAW20jgBqE83xNkFnWz2-M34CKfrjCIzjwWyRxJZ1NjBrNRENU1xQkMGbHyfvdJxPnGN04z-9z3SrUsNMNqNnBX0_6v3ZvmXX06Il97lnGw3fgvi1WLA-jfVQ5A9nkso122hozg3gmcDbIT6vMmlLT3azGFwQxJ1XPqc1LzMh0_a_YYAUx91oimop6r41sgx4HXAEz0MzFJo2mftKk2dUT86ulkkAhUHTeBhN9VeyZKO4Qerxk_y73i54ES3crDVZRRjf7ywJYSiUbESWi2MjqtqHvLGBDSFJkHv9rFdFbGfV7fkG-uBlSF01upKCrtdQd7x8Q5eAJC8H9aoDtqndPfvcQC1x_aLIIcaDfK1r8mD9IEkpJb3wxhcfytox42uVk7NnBZ6c6NGwVc9KIa2ZTnNq-2cGgHntTGhJHtZjSKRFU17hakdKoFsyldvzrvMUeIesHBRgIo6aQYR-RbkoNxe3T7qY6GhdvbdOCVHYuApDXp0onNXnee32jEBLIRtP1d7arbKtG204eZA=w1118-h314-no?authuser=3
+
+[4]: https://lh3.googleusercontent.com/FCKXqDXoH9k2kn_cZobLYbK-ayFqtutq1QFveDtsarb6AIVRQ1YoNdw624Nwr7-KArxYU47ItChRIysdlvud5DHPE8Uwo5tNmYLzenCvFpa-UFBAHuylUrjFPAaypaYSCFySVpDQHaxAS4IdlkzzHHO0iJCSYLuKUNTUGXVy4TrXKe87mugY9UqKSYyMlQslmM_iItTOfgrPXYhsBJG62b3mocsMKs0PhITafWcWld-nFWmWWJFNkO6cAQnD70HrwtugngQ9coVNb7YxfUwK8DiXTnyEC16fqYG2vnMMwTbaG01zTG7XpBgD94Gk7g6-yYjdbyMtJV-FFuSH0kapZ0oIsnWgSHcrBcv2DWb_LdY2Vw8zzkJlkZ7VS8NZmIyKVKgHS6aEodtMnYtMzdZebMuPvhf4Y1vDnqWOdNewabDQGOYoz5CQJKGAUeBeNXkw3sX1Ka_8rY83UzNKAs4Bt5NdrvsVG5ojKIw0c5WiYUlTjqOKMtnGvkrqi7hF6gDcgmJbqGmFpRfaY9p-HOfXC3-EV6aLgozVoua_ObPX1rU0dynN79ohB4WH8nP5URuoHRUD5aEkc659rlOvb27WEmWodpsUAQqHo2g3D5aIPy_AG82_KaBAXzFrGHLEQojZrpcfIbvNySdhfmFuTIUC-NuithaupYaQBjiXe-RSnyr9bPT2h7KnU9pHpe6tfpzd9OWP3jRxPrHG4Cktt-TeGnKN-rMjFiIE5qrlw6mHJLW8kIyoocy2yL4blFzMv4rEnOmyJDEjnwNklEit1_X6hrTsw4XbJn-_Qu_v3MjD7l2iW6JVCvHXvBin81UWcA8lBCSAaApSHe4FqXQudDPGobjAunvbTVGhC_FvDq-bsQ=w864-h704-no?authuser=3
+
+[5]: https://lh3.googleusercontent.com/BBSHECBG9gCVaK8zpfXe9UkQQXJSOYZpuKs12Fo_EZvpXoOdEaDn1LFeddI2W3T3o54X8u0nK3P-8bAk580F5Xzo7lLuA0dSx2wi5RW7-mE_DrrEG1qLqpu2c98IzgSb478rCqD_TVy9JT2wqe1MEvEsjZxzvdNgCNEH5ghY2C1D1AkXTOLgy7oDYIxoVKx1m7wCMDWA6kY26rY9diPeGJ7B-U-gj98M1woC18juB3TS3ZZD6_vwdNqEQ_xbbTBy9m02NJYp4AxW11wn5va0SGRCmIbXi0XJcp1IdR-S962boKwBXrLqvzO81g881bf67AL8SP0Cq5MOKTSGPuM291FS08R1VZFtqEaCmJUgVxIr4UWJtvvoMuaiP9AK5rdsG5Z-B5kSu6E8Mazg408BuAC5pbnDBvfevu_MiYRDGgmjYeBQKdWGSxYar06lXiyhZFHVXmr5irELC08YqKSwpKS1Pi-g-eq8afAExwsWH8JnFVjiUvTSOR3EEo1h4IUPhCdH-rtGPkFPcdD9pAiSPUuuMEsrptkII5mZ7PLJppH4cKNglM005K791ybGyeinZjwzVRTPPBY7g5V5Ns_8Iw17GJ1gM25DsWnmLr80j5SSYybvX6DKj0kaCwVQEckX9E7LEJ-OcT76IrsywZznBFTbc9vFofSze_2UwtLM2ann9Jx4UOvwrz_1THi8W4WSdhCUEU0u67zFw6YHrYi0X4ivhvklGIiQbi2GaXD6P2BgjV7CEbzdJv3PMqD87PJNcyGcjyWxbjajiCdNk-DjtfjHTeFXvhiJkhRCFixDfl7cJGZFp7mP1tXq6L7cs32EVQRWYNOuDearpVTLgUvS4PGQAKf4ZQerAxSPNuxhmw=w574-h102-no?authuser=3
+
+[6]: https://lh3.googleusercontent.com/AZa3bOxzahUpHXysghvW9cZP6B6DqJjE_ou0u2xK3uWxvV9ZvuIxhkIgHa42vAGRhVFIUteGOOBCPSNeGbKjsoykgKuZSj5rQ1Ta8BhjP860bqakHZbFhhMpgi6m6vIw3haOwYIgnOBkDIAMobnzXKlP0IQkjL3Mpftg2PHJR3PfvmE5dGBT-moo_ftnlStqUXHggE8C0hDWyZYcpHahdz9QtsmAmYxUTO0pSgMbPySN3qUGX1YLCUZ3OVAtLq_L0YY4LB6xUCdFzFHruEAi3k3_h1eXGuSecclhZbM-nEy5gJZnfejW9OI3uXgZtITjcy0waBUOxG8vm7YKdEvnFKpobU3MjAw3_OWr5CaFp8aEq8P4nuZWHtbDmYPK0Dzu9NXgPiTSHhXRQVVFe27UYmg_vKtxKSPyjPAFZIHVI6gwALMzuIeeLZYb7qWBITjquLv03Jd9CEqeC_fUR5jO9Ds31emtF3sBKOk9BoYExb6s4GoguinOPy8EePNh6tC-mft_hKhylS4poYeR8a0QKSocU1ASqNKnJkIeyAHAv7m1xXMQXnDPhvd7rtUk5RICCgkXUcHNshbcWLkYBraOWbiU7Dmj11LOLXy6CR1oOIkIEYh_lquCimHq94AcBwZ_H3I-71vLKykuU5cy03-mOg4UnlAFWI0s3KmUDBcJJ0y-KpYBd8L6CncfBdQGJfiWZqdOjFcqWK5Q1nz32NmwKJBKU-sUFEFS7ZPmtxAr2KL7dDrGYEyOU8HKAf3_OGm4jKDW34IcxWekhQwwzff8fUcWPDZdjRZp0DolQLE3wrIsljI0OqgPJR-6vCPoG9B2bGXfcPR5gncwJFEQesTSE3JMywXzLSW-rlxqVbMnzw=w1140-h726-no?authuser=3
+
+[7]: https://lh3.googleusercontent.com/LqDCC6tnfv-duvzLMsT3b04eYoGLRcEZmP-LR6fCWejxmynrKrA8GnzcI_fQSbpynWbtOGC_IvpUol9q214evD3uWUsKWXMZtaDgu0sJ2YV-ROMbt3AtzExjwI4_io8UKH1YrCAHeKOGfz-RlWHheQXZRaXxSK3vbPB5cRzVEnIrgGPt_7M_IfUtPhoZvLln8cUd-rVmn86LD-7Jo4H8v2fROX3GhOO-dk9O8pL75Slf3nsNp4v2GVXf_rgZgB9sGS6Yd7k-3psqS4tCepW_1mMIKlMalWBU9uXa9xYg3B4qRQZLto41s5-8budSWrSG75UXccKcjE8w504jxQvR4tWRiQ5VaVAsGvLJBM10XT5B3cca2ifeYTLQaM6UywMW6WEWIXnOcAFOifQrcYDO6Rw3pxEiSCGMTpo736C6EwFKFxz_f0n9bAqSgxb-ujzJVSTC9iFPISSpcdRt5GPelt1u70pCkzuXU0Wwr1gBXSnVg7O5S3FV8eQ0h33A5gO_D63PqSK8dB0Q2JOaN0dovdx6thts8Pu-bGezteKPEleP9N6ANTmcvXyPB4q9oeIpO4Zucwqs9Msu7-XKa6Xn-99Y3vDzgKqzfWSnL2j56GRMn_tcjW7-CW3i_SHc1j1HkRjwHrJfUYarvygYBki6hJSLElJ2eOZB7s9RUp_EZ9LoDP2wV3XMpDq7el1XwRbrqdZJaRsNAR5zFJCCu8YwAIdCRrYkvD7-SDjPS0gk2CMa-dlBwDpNeEOzB0U5T4TGN7cx0EWMqr1PBGPfgggLu8xSO4MCYw4JOk5wLB-P4M-vadDXXL0E5dDMm3I81DSA7Bn0I1fH33H7WSJa6NWHFfGJBbBp1G0PjiP5ewkL0g=w1114-h676-no?authuser=3
+
+[8]: https://lh3.googleusercontent.com/_DLUS8IfKJjlAi9A2zQLwTArofSTXbNv2Yfj-4ZUILve9SWaOgGbVAJPga2jo6RIzC-FMIF1Sm3VsobknzT1g7LTcgG8b_wSMfoWb1BPMSr-yI-L6sCzMiGr1cNGsQKAS75JUa9Wdeso4HHs_UNhOnNbtB6CKYJ8yzt1msNrvVEUFP_eXfnumuwBRMdqj6Q3g94F4h_-srw4j-_rvgV9S5dwnP0dGvBcoV4bp4U1zhSL1KsV5cVvYc39BZmCDkK3i-DIO6x2vGMGNW98kpnKK015vy0NWvs5XPW0w5MhnhVElW3TdSNDCs5dEV965neWQXhEJsHGk6xvIuGbxGKgM5-u9amj8CRLZNMrSu5gBFi-jDqjvRQ1TtdFP7fwodGtBlH2YlMKLVTsuAJiPxyhxfariUkXwaa7gpiAhKROVM2p_esiH8av5cBV6OSzJRvS8XF9lItKfKkTgdGU7YYHh1HuKbo-LKD35P8Uc6tkyFiyrCUrgLlZQXdBkBug7y7dWpCCJpotV_tsOdnN-OGC3dLrdD92gPE1P4mUyRmOWIwhStyIKrR-7S8hUe-wRes80akKdQ-lRM3R2SiPoZALttWZv2rqKwEJ1_q78p5HqzFei_KnA3POiE59jLDt8vso3KZ1vzNQZZyIKh9zw8wXCtXNz_b12Fknrx53wqvv4Dwg2eDZoKyuzdlJCnA3zHn_wZ04GOq0y-cmJx-5qDsVZegY2p9FQwOVkc9VKu0v98bFaR-KhpVW3nKyzarSAWsbFfMa1UCKRhm8z9Q4DKVlAieEoEeUcDyDXYDE8fa52T2bhJ6qM8-WrvJOp0hgpdOb9QWbPmSVHesc09EEMeuw0AkKj4PYxvQCiC7LSccq3g=w1110-h212-no?authuser=3
+
+[9]: https://lh3.googleusercontent.com/OFQey6-sB1eIGORikHiKZwLQJEIYl-_MK9vIElwjBlCibueCLwHxdLXzqO3FNEHFkFHtTDwHZWyYo3DVtEpY4HsywyslirneFeejcs3idsTwOIwzTI7QQ-yXW_leTGboLZnGr_AAuxdkf3hPJwMbowbxJgbzr-hYDYp4Q2E3tEAioj6y9JS0uEgH0oQT9pzXuuK6V0CrNPTVtPuyN9xw7_ab0sTA9vuMIS3BJk3qoxcj-0QQdlCzEmPzerKBa5VRoVaOV02iF0-goq-WqBp5fDh6AMqx1sIP0YvAHE57DwRAaST2i-yB23uGN4Mpq06HfCD27rsg5Qdu84SWavSb_E8L_K8ytShkvlDYsy1kq4m4CqDguFzV6mUCG8LuhH4dx9WvWfO04jYU6DDUptUp4l8r45NF6_VE_g1wSL-S7LpzRUNzIgJrViatz_2nBKBo0YAg39qYldzEDWnp2FptUVVjNf98Ln1x7JRYE8DJIxmZ4fEeO2IWg_J7-BNTiD-Dk7JsHAoKvSi2o4r1q_j2uXTFuCBtPcoiiGrzPwohsgdGLXpc8MpS-bq3zk2KmslhO2X68kbIeFIWQWVJzRbibW0WHFwwntEvCo5LT-uDuVrBC-8sPsT0yMeayHZzr1r0FaJfeVX4jnNpXIJ6vMPpfVOrR9s4cM5ZK77IJuQIzEAHG40_WInrAE5eF3iFyqqE2x9GsfIrpfcKUS_Ifr3HB8IZ4LJFJxiWc6qbuheRT3-odgCQqLIqVYQxy4yYMfqmt5ClY09dXMCeJzyAhrKa-AN0nkCBNJLH6sl4H29_95hTdqBM9rpLtRAQBiDbWpqv5aJ4LFV-644FTX_kWQVhN5DXAVpIQ3d7lvomkjJuZg=w1022-h562-no?authuser=3
+
+[10]: https://lh3.googleusercontent.com/X1tzkuFIeTaH82zoK7mtaIarFg2Ju7EUNl-ezklRFZ-6r95ie5UVtLJrCGygbXDaxpWbJkqNVxSdg374QWA0Ie5jddUNMAHzDJNcpeWkW9peVmJJ7ukZn6VWEJxSmlZEuYfvtzDcEeXcOTho6BDsqCAiyl6_HUHao_ySIAWnJ-LPKuUwyfIPI7UtUrBvtpYhTZxu_asWN6qDJKya5pmBvgFK7R2Hjpp01olW25UyWLe-_uEr9hSy3gyfbw808ei2GV1MCmkV3OW0-VwhmU-HfbhJN3hOyLE_oi13KXvVamyTfsBL45LsbZc_BpH5n6rNi2V4Z42ue7kOlP6ei8_Dau_ysfa8Zv-ZROLa3iqfANAPr7eLu1iGsfVRENR9c28pdpRIdYXXVxVRHCdpF8ctQGX2rTzcT2NU7SGMR1SJDOa0ssbP_s-8yfTZMbNS0XgUrd5HvYjMstvQEnZvUkLflC6BbX57B0OaqX2PRL7Rra3DfWmuT-r4Duo57vIkyQ4gPhauoK5W5D9kPKW7z1YrEDqE-Oi5P3-F9q1bzdTRTdtct6GSxnvrF7Xqn0UAK_MZ_qq1JfZ52bbmHFaziYXhAfJ0dihY7wiPhU3JcLJLvAg6z6HaI0RoyzgXm9pJQGHQaU3vzSykGkBsp9Wq2QLYXTJ4i8cyqB114MhupUXqPZWXy59e6AbiKZRGn3KHX-zy8UtkZZrbbr2zb6LyfkPb2Gy9rh--YNgnZfXoHshbTeMpzI7rpgX8is5BsW6ZthXUUQBJClq0h1qdYwlhjsR9MxZv39F33SYFI9vJhoeH4mE_0UEmAyn_sn-rIMc7b-YItoWp5wRej_jWqVa3lmfEgmkdS59Ylj8fXN9x3oO98A=w1124-h664-no?authuser=3

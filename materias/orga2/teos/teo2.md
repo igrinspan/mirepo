@@ -66,7 +66,7 @@ int main(){
 
 # Ciclo de desarrollo
 
-![Teo%202%20Orga%202%20(02%2020)%20a021ced03da647fdb186fc1150c0f11f/Untitled.png](../teos/teo2/Teo%202%20Orga%202%20(02%2020)%20a021ced03da647fdb186fc1150c0f11f/Untitled.png)
+![Teo2-1][1]
 
 1. Codeamos el programa en lenguaje humano, como por ejemplo **C**. (Programa Fuente) "hola.c".
 2. Luego el compilador lo transforma a un programa objeto, escrito en binario. "hola.o". Aún no es un binario crudo, tiene información adicional, por ejemplo indica que hay una función externa que se debe traer.
@@ -149,3 +149,6 @@ Operandos (registro, memoria, constantes)
 Comentarios
 
 ### **Faltan videos 0204, 0205, 0206 aprox 50'**
+
+
+[1]: https://lh3.googleusercontent.com/bvDG8hrNUCcLYNlyhWIKuR29KcbYk1lJOaXfzqGwFMnL0igh9mmN2FS825tEMl2JYLhV6iqWh988_c8uq9mqe3SpPzfMcjE3xCfZW1adApsvwok55eCpAE3JR9fEi-4wcoGfRGfaRpIfOoFiFB0p7y7MdCJs_DyzYzBqcCT15hqNccQIPZOtjveMgrqJdtD4f0uUimkQ80_Uhj1L4Xm4pPZeAHZrgfDNGS3VTQTvVuCTaA4Tp-3WNKWVTciE4e_3-XiF8fW9xMf3xrntKua4AVSuhsYkJIG_s-33jbgwVua9Iqd_QgDvwJqcHEr919H2GM1oWfWLu6LYIbZPZEYnIM0UtHfM1-lY_Mf-k1klonTcCs0Lf1WNYibtfxnH2tBveTlg5vXt1DdgdrpyJenVK6pUOI_5HuSTIe8dkwyuvj-XQJQev3l3P2fAcq9gN_YzOIoivwdOuV-_5NnBvi2GCzPG6uUAp__uD-Z9naBl90GQ5U3rRuPYdv7QJp1ylHj6nS6ED5jsvhJcJoXnthU6HyegMmC5C62D3abMkGGT7wksCGO_BUqicCR1DewcgkaXvJyzDIyrkBTE2AxKOa5lmrDGYGCOEagYcVwPkm3Pv-pd5iarT7vggBbbO0oYs8eqdM-Rvk7RzU7YMd3-_3_jAhfh-iMQZAj-zEjPS1wIJeoPnuFG_qk-znRTzsYDzaUxbll0i_mvEXbxWsDivsLYb1CPYc0KCBDCz7LTNK2YHdEIW_J6PGmXPp1N9lLobtTWrUkrG8EbDQAceZxTCKEASurOgZsNzziyc4tdDYayCYUQCR32EMBQZ2RzBwXA2ZorMYW6V3vGkyg-5bFp4vGOYnZYQ_RgNObGioUC0-ocow=w1156-h780-no?authuser=3 

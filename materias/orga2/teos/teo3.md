@@ -68,7 +68,7 @@ Hay demasiadas instrucciones, vamos a ver algunas. El resto está en el manual d
 
 **Aritmética saturada:** cuando llegamos a fuera de rango, nos quedamos en ese borde al que habíamos llegado (puede ser el mínimo o el máximo).
 
-![Teo%203%20Orga%202%20(03%2010hs)%20dfe5e5d2e3a54b32ae21ee5e68b5aa6a/Untitled.png](../teos/teo3/Teo%203%20Orga%202%20(03%2010hs)%20dfe5e5d2e3a54b32ae21ee5e68b5aa6a/Untitled.png)
+![Teo3-1][1]
 
 Suma, resta, multiplicación. Suma horizontal, suma de productos. Instrucciones lógicas.
 
@@ -90,3 +90,5 @@ Packed Shift Right Arithmetical: se conserva el signo cuando se reemplaza a la d
 Si la condición no se cumple, en el destino se pone 0. Si se cumple, se pone 1.
 
 Conversiones de datos empaquetados y desempaquetados.
+
+[1]: https://lh3.googleusercontent.com/w8G1uVDMQdvykIK2MRmeG7O37yrv98Z1EyDtAaZmg9F-S2DT9a8-c8jnylNzZUFMy4YDnA0txOJzKjHtVL2fMlWub0E9Gf5DYVRfLEfIHyy9pzmMmtNYz94_0moIRleRYE_2b52TbkDe8fG6yNjqK9dr4iWbUZr5QK3K1as3epujki3-cQ3Na-5z1dAiwiUSvAFeMIjPVdXrj8ejEPboc5vhuj-U8-BGwW_4BwliUKzhh61Mig7Pj6PmC_Gdp5xXwOR2qfBTAIwmdDL6uVq60KIirGDBRJl7w4Rg270HgAdifF5Ic29NSzruDFlcGK1OB6kBIrWrgk5NjAhlGOFEWIwCiJz8-kCMaVwq5vSirMeazJsRWYJbOihdrNcaWEM_aoaXXCM6RGsu7EUaspDYrYtHWOC2TjbOizmNXCl_fpuk9uQIMApzMxLyIVD9Jat7DTZm8dmRF9ws1Jh7QwfAGI-58xJy07jYCTnZpbB29ls_FHHnkkLhg4OwoylFtQJSmqCXrkZxk6aatO7DfaSNV7_i3gHN8HhTLSP-P0Np3HEIVQqOeBwEmd6J0Ii12r9dGcVsiiecg-dzvQ363LMvsGKPiwTDnniRVDNkNGGRYmAh-zUVH2YPCrVTEAW6aXVeNix29zT6GhTcb49yL4T9VTl8Giu6RXR8NsYWisBrJoS1lvgPdpEF4fUUrGzT-BpkgTL6xztJFzehEbkdjkx2aCxjSymoqwh-jt0JZTB3Xk6h__jESPoP3L7DyvQb2qZqdalihD0iONkgVyfwlYWGnz6mk7kZaHn2yLq_--kzD-8ZYWeqaQkBszxBeUNSZaVmieVcBNc9IiRa9M6BMROQ73N8QFM-_KaUz2I5JWjW-g=w1110-h290-no?authuser=3
