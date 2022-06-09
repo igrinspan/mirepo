@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Apuntes
+title: Materias
 permalink: /materias/
 ---
 
